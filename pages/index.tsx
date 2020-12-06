@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { GraphQLClient } from 'graphql-request';
-import Layout from '../components/Layout'
+import Layout from '../components/Layout';
 import Post from '../components/Post';
 
 export default function Home({ posts }) {
@@ -29,6 +29,7 @@ const Wrapper = styled.div`
         max-width:800px;
         margin:0 auto;
         height:400px;
+        margin-top:6rem;
     }
 `
 

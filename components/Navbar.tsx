@@ -16,7 +16,7 @@ const Navbar = () => {
 const Wrapper = Styled.nav`
     width:100%;
     display:flex;
-    justify-content:space-between;
+    justify-content:center;
     margin:0 auto;
     margin-bottom:2rem;
     max-width:800px;
@@ -24,7 +24,7 @@ const Wrapper = Styled.nav`
 
     ul{
         display:flex;
-        justify-content:flex-end;
+        justify-content:center;
         width:100%;
         margin:0 auto;
         
