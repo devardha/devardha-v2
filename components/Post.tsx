@@ -1,6 +1,7 @@
 import React from 'react'
 import Styled from '@emotion/styled'
 import { format } from 'date-fns'
+import Link from 'next/link'
     
 const Post = ({ post }) => {
     const dateFormatter = (date) => {
@@ -17,10 +18,12 @@ const Post = ({ post }) => {
                 <img src={post.image} alt={post.title}/>
             </div>
             <div className="post-preview">
+                <Link href={post.slug}>
                 <div className="postpreview-top">
                     <div className="title">{post.title}</div>
                     <div className="subtitle">{limitCharacter(post.postBody.raw.children[0].children[0].text, 110)}</div>
                 </div>
+                </Link>
                 <div className="postpreview-bottom">
                     <div className="post-detail">
                         <div className="user-profile">
@@ -65,6 +68,10 @@ const Wrapper = Styled.li`
         display:flex;
         flex-direction:column;
         justify-content: space-between;
+
+        .postpreview-top{
+            cursor:pointer;
+        }
 
         .title{
             font-weight:bold;
