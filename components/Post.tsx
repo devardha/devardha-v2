@@ -44,7 +44,7 @@ const Wrapper = Styled.li`
     width:100%;
     height:220px;
     border-radius:8px;
-    margin:1rem 0;
+    margin:1.5rem 0;
     display:flex;
 
     img{
@@ -62,6 +62,7 @@ const Wrapper = Styled.li`
             border-radius:8px 0 0 8px;
         }
     }
+
     .post-preview{
         width:65%;
         padding:1.5rem;
@@ -77,6 +78,7 @@ const Wrapper = Styled.li`
             font-weight:bold;
             margin-bottom:8px;
             font-size:1.3rem;
+            line-height: 2rem;
         }
 
         .subtitle{
@@ -84,6 +86,7 @@ const Wrapper = Styled.li`
             line-height:1.5rem;
         }
     }
+
     .post-detail{
         display:flex;
         margin-top:1rem;

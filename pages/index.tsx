@@ -4,13 +4,25 @@ import Layout from '../components/Layout';
 import Post from '../components/Post';
 
 export default function Home({ posts }) {
+    function compare( a, b ) {
+        if ( a.createdAt < b.createdAt ){
+          return 1;
+        }
+        if ( a.createdAt > b.createdAt ){
+          return -1;
+        }
+        return 0;
+    }
+
+    const sorted = posts?.sort(compare);
+
     return (
         <Wrapper>
-            <Layout>
+            <Layout title="devArdha Blog | Full Stack Web Developer">
                 <div className="post">
                     <ul>
                         {
-                            posts?.map((post, index) => {
+                            sorted?.map((post, index) => {
                                 return(
                                     <Post post={post} key={index}/>
                                 )

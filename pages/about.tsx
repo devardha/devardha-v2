@@ -5,7 +5,7 @@ import Layout from '../components/Layout'
 const About = () => {
     return (
         <Wrapper>
-            <Layout>
+            <Layout title="About | devArdha Blog">
                 <div className="page-head">
                     <h1>About</h1>
                     <div className="author-detail">

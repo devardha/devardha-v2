@@ -38,10 +38,6 @@ const Wrapper = Styled.nav`
                 text-decoration:underline;
             }
         }
-
-        .active{
-            text-decoration:underline;
-        }
     }
 `
     

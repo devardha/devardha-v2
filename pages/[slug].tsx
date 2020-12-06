@@ -12,7 +12,7 @@ const Article = ({ post }) => {
 
     return (
         <Wrapper>
-            <Layout>
+            <Layout title={`${post.title} | devArdha Blog`}>
                 <div className="page-head">
                     <h1>{post.title}</h1>
                     <div className="author-detail">

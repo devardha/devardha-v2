@@ -3,7 +3,7 @@ import Styled from '@emotion/styled'
 import Head from 'next/head'
 import Navbar from './Navbar'
     
-const Layout = ({ children }) => {
+const Layout = ({ children, title }) => {
     return (
         <Wrapper>
             <Head>
@@ -11,9 +11,9 @@ const Layout = ({ children }) => {
                 <meta charSet="utf-8" />
                 <meta name="robots" content="index,follow"/>
                 <meta name="googlebot" content="index,follow"/>
-                <title>devArdha Official Site</title>
+                <title>{title}</title>
             </Head>
-            <Navbar/>
+            {/* <Navbar/> */}
             {children}
         </Wrapper>
     );
