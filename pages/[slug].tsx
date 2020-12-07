@@ -34,59 +34,6 @@ const Article = ({ post }) => {
 }
     
 const Wrapper = Styled.div`
-    .page-head{
-        max-width:700px;
-        margin:0 auto;
-        margin-bottom:2rem;
-        margin-top: 1.5rem;
-        padding: 0 1.5rem;
-
-        h1{
-            margin:0;
-            margin-bottom:1rem;
-            font-size: 2.2rem;
-            line-height: 2.7rem;
-        }
-    }
-
-    .page-body{
-        max-width:700px;
-        margin:0 auto;
-        padding: 0 1.5rem;
-        padding-bottom:6rem;
-
-        p{
-            font-size:16px;
-            line-height:1.75rem;
-        }
-
-        h2{
-            margin-top:2rem;
-            margin-bottom:0;
-            font-size: 1.25rem;
-        }
-
-        h3{
-            margin-top: 2rem;
-            margin-bottom: 0;
-            font-size: 1rem;
-        }
-    }
-
-    .user-profile{
-        height:30px;
-        width:30px;
-        background-color:#eee;
-        margin-right:1rem;
-        border-radius:50%;
-
-        img{
-            border-radius:50%;
-            height:100%;
-            width:100%;
-        }
-    }
-
     .author-detail{
         display:flex;
         align-items:center;

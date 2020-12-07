@@ -11,7 +11,11 @@ const Post = ({ post }) => {
     }
 
     const limitCharacter = (text: any, count: number) => {
-        return text.slice(0, count) + (text.length > count ? "..." : "");
+        if(!text){
+            return ''
+        }else{
+            return text.slice(0, count) + (text.length > count ? "..." : "");
+        }
     }
 
     const saveToLocalStorage = (arr) => {
@@ -112,6 +116,12 @@ const Wrapper = Styled.li`
 
         .postpreview-top{
             cursor:pointer;
+
+            &:hover{
+                .title{
+                    color: #0e18ff;
+                }
+            }
         }
 
         .title{
@@ -170,7 +180,7 @@ const Wrapper = Styled.li`
         }
 
         .bookmarked{
-            color:#3A43F0;
+            color:#0e18ff;;
         }
     }
 

@@ -43,6 +43,10 @@ const Wrapper = styled.div`
         height:400px;
         margin-top:0;
         padding: 0 1.5rem;
+
+        ul{
+            padding-bottom:6rem;
+        }
     }
 
     @media(min-width:768px){

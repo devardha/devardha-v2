@@ -26,43 +26,6 @@ const About = () => {
 }
     
 const Wrapper = Styled.div`
-    .page-head{
-        max-width:700px;
-        margin:0 auto;
-        margin-bottom:2rem;
-        margin-top:4rem;
-
-        h1{
-            font-size:2.75rem;
-            margin:0;
-            margin-bottom:1rem;
-        }
-    }
-
-    .page-body{
-        max-width:700px;
-        margin:0 auto;
-
-        p{
-            font-size:1.1rem;
-            line-height:1.75rem;
-        }
-    }
-
-    .user-profile{
-        height:30px;
-        width:30px;
-        background-color:#eee;
-        margin-right:1rem;
-        border-radius:50%;
-
-        img{
-            border-radius:50%;
-            height:100%;
-            width:100%;
-        }
-    }
-
     .author-detail{
         display:flex;
         align-items:center;
@@ -71,6 +34,20 @@ const Wrapper = Styled.div`
         .date{
             color:#777;
             margin-left:1rem;
+        }
+    }
+
+    @media(min-width:768px){
+        .page-head{
+            margin-top:6rem;
+
+            h1{
+                font-size:2.75rem;
+                line-height:3.5rem;
+            }
+        }
+        .page-body{
+            font-size: 1.5rem;
         }
     }
 `
