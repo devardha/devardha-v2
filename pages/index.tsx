@@ -61,9 +61,7 @@ export async function getStaticProps() {
         {
             posts{
                 title,
-                postBody{
-                    raw
-                },
+                article,
                 slug,
                 image,
                 writer,

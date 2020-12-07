@@ -3,7 +3,7 @@ import Styled from '@emotion/styled'
 import { GraphQLClient } from 'graphql-request'
 import Layout from '../components/Layout'
 import { format } from 'date-fns'
-import parse from 'html-react-parser'
+import ReactMarkdown from 'react-markdown'
 
 const Article = ({ post }) => {
     const dateFormatter = (date) => {
@@ -24,7 +24,9 @@ const Article = ({ post }) => {
                     </div>
                 </div>
                 <div className="page-body">
-                    {parse(post.postBody.html)}
+                    <ReactMarkdown>
+                    {post.article}
+                    </ReactMarkdown>
                 </div>
             </Layout>
         </Wrapper>
@@ -49,9 +51,9 @@ const Wrapper = Styled.div`
 
     .page-body{
         max-width:700px;
-        padding-bottom:6rem;
         margin:0 auto;
         padding: 0 1.5rem;
+        padding-bottom:6rem;
 
         p{
             font-size:16px;
@@ -62,6 +64,12 @@ const Wrapper = Styled.div`
             margin-top:2rem;
             margin-bottom:0;
             font-size: 1.25rem;
+        }
+
+        h3{
+            margin-top: 2rem;
+            margin-bottom: 0;
+            font-size: 1rem;
         }
     }
 
@@ -93,7 +101,7 @@ const Wrapper = Styled.div`
     @media(min-width:768px){
         .page-head{
             margin-top:6rem;
-            
+
             h1{
                 font-size:2.75rem;
                 line-height:3.5rem;
@@ -114,9 +122,7 @@ Article.getInitialProps = async ({ query: { slug } }) => {
                 slug: "${slug}"
             }){
                 title,
-                postBody{
-                    html
-                },
+                article,
                 image,
                 writer,
                 createdAt
