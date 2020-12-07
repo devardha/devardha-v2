@@ -26,6 +26,11 @@ const About = () => {
 }
     
 const Wrapper = Styled.div`
+    nav{
+        ul{
+            max-width:700px !important;
+        }
+    }
     .author-detail{
         display:flex;
         align-items:center;
@@ -40,6 +45,7 @@ const Wrapper = Styled.div`
     @media(min-width:768px){
         .page-head{
             margin-top:6rem;
+            padding:0;
 
             h1{
                 font-size:2.75rem;
@@ -48,6 +54,7 @@ const Wrapper = Styled.div`
         }
         .page-body{
             font-size: 1.5rem;
+            padding:0;
         }
     }
 `

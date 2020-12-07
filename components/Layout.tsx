@@ -13,7 +13,7 @@ const Layout = ({ children, title }) => {
                 <meta name="googlebot" content="index,follow"/>
                 <title>{title}</title>
             </Head>
-            {/* <Navbar/> */}
+            <Navbar/>
             {children}
         </Wrapper>
     );

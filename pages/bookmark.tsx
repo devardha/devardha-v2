@@ -89,26 +89,31 @@ const Wrapper = Styled.div`
     .page-head, .page-body{
         max-width:800px;
         padding:0;
+        padding: 0 1.5rem;
+    }
+
+    .page-head{
+        margin-top: 6rem;
     }
 
     .post{
         display:flex;
         width:100%;
         margin:1.5rem 0;
-        height:160px;
+        flex-direction: column;
 
         .post-image{
-            width:35%;
-            height:100%;
+            width:100%;
+            height:210px;
 
             img{
-                border-radius:8px 0 0 8px;
+                border-radius:8px 8px 0 0;
             }
         }
 
         .post-preview{
-            width:65%;
-            padding:0 1.5rem;
+            width:100%;
+            padding:1rem 0 1.5rem 0;
             display:flex;
             flex-direction:column;
             justify-content: center;
@@ -144,13 +149,34 @@ const Wrapper = Styled.div`
     }
 
     @media(min-width:768px){
+        .posts{
+            padding: 0;
+        }
+        .post{
+            flex-direction: row;
+        }
         .page-head{
-            margin-top:6rem;
+            padding:0;
 
             h1{
                 font-size:2.75rem;
                 line-height:3.5rem;
             }
+        }
+        .page-body{
+            padding:0;
+        }
+        .post-image{
+            width:35% !important;
+            height:160px;
+
+            img{
+                border-radius:8px 0 0 8px;
+            }
+        }
+        .post-preview{
+            width:65% !important;
+            padding:1.5rem !important;
         }
     }
 `

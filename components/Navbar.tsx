@@ -1,13 +1,17 @@
 import React from 'react'
 import Styled from '@emotion/styled'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
     
 const Navbar = () => {
+    const router = useRouter()
+
     return (
         <Wrapper>
             <ul>
-                <li className="active">Home</li>
-                <li>Portfolio</li>
-                <li>About</li>
+                <Link href="/"><li className={router.pathname === '/' ? 'active' : ''}>Home</li></Link>
+                <Link href="/about"><li className={router.pathname === '/about' ? 'active' : ''}>About</li></Link>
+                <Link href="/bookmark"><li className={router.pathname === '/bookmark' ? 'active' : ''}>Bookmark</li></Link>
             </ul>
         </Wrapper>
     );
@@ -17,26 +21,33 @@ const Wrapper = Styled.nav`
     width:100%;
     display:flex;
     justify-content:center;
-    margin:0 auto;
     margin-bottom:2rem;
-    max-width:800px;
     align-items: center;
+    padding: 2rem 1.5rem;
+    position: fixed;
+    z-index: 1;
+    background: #fff;
+    top: 0;
 
     ul{
         display:flex;
-        justify-content:center;
+        justify-content:flex-start;
         width:100%;
+        max-width:800px;
         margin:0 auto;
         
         li{
             color:#000;
-            margin-left:1rem;
-            padding:1rem .5rem;
+            margin-right:2rem;
             cursor:pointer;
             
             &:hover{
-                text-decoration:underline;
+                color:#0e18ff;
             }
+        }
+
+        .active{
+            color:#0e18ff;
         }
     }
 `

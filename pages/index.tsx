@@ -19,7 +19,7 @@ export default function Home({ posts }) {
     return (
         <Wrapper>
             <Layout title="devArdha Blog | Full Stack Web Developer">
-                <div className="post">
+                <div className="posts">
                     <ul>
                         {
                             sorted?.map((post, index) => {
@@ -36,13 +36,12 @@ export default function Home({ posts }) {
 }
 
 const Wrapper = styled.div`
-    .post{
+    .posts{
         width:100%;
         max-width:800px;
         margin:0 auto;
-        height:400px;
-        margin-top:0;
         padding: 0 1.5rem;
+        margin-top: 6rem;
 
         ul{
             padding-bottom:6rem;
@@ -50,7 +49,7 @@ const Wrapper = styled.div`
     }
 
     @media(min-width:768px){
-        .post{
+        .posts{
             padding: 0;
             margin-top:6rem;
         }
