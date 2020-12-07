@@ -41,7 +41,15 @@ const Wrapper = styled.div`
         max-width:800px;
         margin:0 auto;
         height:400px;
-        margin-top:6rem;
+        margin-top:0;
+        padding: 0 1.5rem;
+    }
+
+    @media(min-width:768px){
+        .post{
+            padding: 0;
+            margin-top:6rem;
+        }
     }
 `
 

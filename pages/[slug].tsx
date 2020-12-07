@@ -36,12 +36,14 @@ const Wrapper = Styled.div`
         max-width:700px;
         margin:0 auto;
         margin-bottom:2rem;
-        margin-top:6rem;
+        margin-top: 1.5rem;
+        padding: 0 1.5rem;
 
         h1{
-            font-size:2.75rem;
             margin:0;
             margin-bottom:1rem;
+            font-size: 2.2rem;
+            line-height: 2.7rem;
         }
     }
 
@@ -49,6 +51,7 @@ const Wrapper = Styled.div`
         max-width:700px;
         padding-bottom:6rem;
         margin:0 auto;
+        padding: 0 1.5rem;
 
         p{
             font-size:16px;
@@ -58,6 +61,7 @@ const Wrapper = Styled.div`
         h2{
             margin-top:2rem;
             margin-bottom:0;
+            font-size: 1.25rem;
         }
     }
 
@@ -83,6 +87,20 @@ const Wrapper = Styled.div`
         .date{
             color:#777;
             margin-left:1rem;
+        }
+    }
+
+    @media(min-width:768px){
+        .page-head{
+            margin-top:6rem;
+            
+            h1{
+                font-size:2.75rem;
+                line-height:3.5rem;
+            }
+        }
+        .page-body{
+            font-size: 1.5rem;
         }
     }
 `

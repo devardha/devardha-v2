@@ -42,10 +42,10 @@ const Post = ({ post }) => {
     
 const Wrapper = Styled.li`
     width:100%;
-    height:220px;
     border-radius:8px;
     margin:1.5rem 0;
     display:flex;
+    flex-direction: column;
 
     img{
         width:100%;
@@ -54,18 +54,17 @@ const Wrapper = Styled.li`
     }
 
     .post-image{
-        width:35%;
+        width:100%;
         height:100%;
-        background:#000;
 
         img{
-            border-radius:8px 0 0 8px;
+            border-radius:8px 8px 0 0;
         }
     }
 
     .post-preview{
-        width:65%;
-        padding:1.5rem;
+        width:100%;
+        padding:1.5rem 0;
         display:flex;
         flex-direction:column;
         justify-content: space-between;
@@ -114,6 +113,23 @@ const Wrapper = Styled.li`
                 margin-bottom:4px;
                 font-weight:bold;
             }
+        }
+    }
+
+    @media(min-width:768px){
+        flex-direction: row;
+        height:220px;
+
+        .post-image{
+            width:35%;
+
+            img{
+                border-radius:8px 0 0 8px;
+            }
+        }
+        .post-preview{
+            width:65%;
+            padding:1.5rem;
         }
     }
 `
