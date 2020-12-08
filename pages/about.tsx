@@ -28,7 +28,7 @@ const About = () => {
 const Wrapper = Styled.div`
     nav{
         ul{
-            max-width:700px !important;
+            max-width:800px !important;
         }
     }
     .author-detail{
@@ -44,7 +44,7 @@ const Wrapper = Styled.div`
 
     @media(min-width:768px){
         .page-head{
-            margin-top:6rem;
+            margin-top:8rem;
             padding:0;
 
             h1{

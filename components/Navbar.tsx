@@ -2,6 +2,7 @@ import React from 'react'
 import Styled from '@emotion/styled'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { IoMdMoon } from 'react-icons/io'
     
 const Navbar = () => {
     const router = useRouter()
@@ -9,9 +10,12 @@ const Navbar = () => {
     return (
         <Wrapper>
             <ul>
-                <Link href="/"><li className={router.pathname === '/' ? 'active' : ''}>Home</li></Link>
-                <Link href="/about"><li className={router.pathname === '/about' ? 'active' : ''}>About</li></Link>
-                <Link href="/bookmark"><li className={router.pathname === '/bookmark' ? 'active' : ''}>Bookmark</li></Link>
+                <span className="dark-mode"><IoMdMoon/></span>
+                <div className="list">
+                    <Link href="/"><li className={router.pathname === '/' ? 'active' : ''}>Home</li></Link>
+                    <Link href="/about"><li className={router.pathname === '/about' ? 'active' : ''}>About</li></Link>
+                    <Link href="/bookmark"><li className={router.pathname === '/bookmark' ? 'active' : ''}>Bookmark</li></Link>
+                </div>
             </ul>
         </Wrapper>
     );
@@ -29,6 +33,24 @@ const Wrapper = Styled.nav`
     background: #fff;
     top: 0;
 
+    .dark-mode{
+        background-color: #EDF2F7;
+        padding: 12px;
+        display: flex;
+        border-radius: 4px;
+        cursor:pointer;
+
+        &:hover{
+            background-color: #e7eef5;
+        }
+    }
+
+    .list{
+        display:flex;
+        margin-left: auto;
+        align-items: center;
+    }
+
     ul{
         display:flex;
         justify-content:flex-start;
@@ -38,7 +60,7 @@ const Wrapper = Styled.nav`
         
         li{
             color:#000;
-            margin-right:2rem;
+            margin-left:1.5rem;
             cursor:pointer;
             
             &:hover{
@@ -48,6 +70,15 @@ const Wrapper = Styled.nav`
 
         .active{
             color:#0e18ff;
+            font-weight: 600;
+        }
+    }
+
+    @media(min-width:768px){
+        ul{
+            li{
+                margin-left:2rem;
+            }
         }
     }
 `

@@ -16,7 +16,7 @@ body {
 }
 
 a {
-    color: inherit;
+    color: #0e18ff;
     text-decoration: none;
 }
 
@@ -65,21 +65,22 @@ p{
 
 /* Pages */
 .page-body{
-    max-width:700px;
+    max-width:800px;
     margin:0 auto;
     padding: 0 1.5rem;
-    padding-bottom:6rem;
 }
 
 .page-body p{
     font-size:16px;
-    line-height:1.75rem;
+    margin-top: 1rem;
+    line-height: 1.75rem;
+    margin-bottom: 2rem;
 }
 
 .page-body h2{
-    margin-top:2rem;
-    margin-bottom:0;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    margin-bottom: 1em;
+    margin-top: 2em;
 }
 
 .page-body h3{
@@ -90,7 +91,7 @@ p{
 }
 
 .page-head{
-    max-width:700px;
+    max-width:800px;
     margin:0 auto;
     margin-bottom:2rem;
     margin-top:6rem;
@@ -102,6 +103,7 @@ p{
     margin-bottom:1rem;
     font-size: 2.2rem;
     line-height: 2.7rem;
+    letter-spacing: -0.025em;
 }
 
 .page-head .user-profile{
