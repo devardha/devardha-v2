@@ -1,42 +1,13 @@
 import { useEffect, useState } from 'react'
 import Styled from '@emotion/styled'
-import { format } from 'date-fns'
 import Link from 'next/link'
 import { MdBookmarkBorder, MdBookmark } from 'react-icons/md'
+import { dateFormatter } from '../utils/date'
+import { limitCharacter, readTime } from '../utils/post'
+import { saveToLocalStorage, bookmark, checkBookmark, removeBookmark } from '../utils/bookmark'
     
 const Post = ({ post }) => {
     const [bookmarkList, setBookmarkList] = useState([])
-    const dateFormatter = (date) => {
-        return format(new Date(date), "MMMM dd, yyy")
-    }
-
-    const limitCharacter = (text: any, count: number) => {
-        if(!text){
-            return ''
-        }else{
-            return text.slice(0, count) + (text.length > count ? "..." : "");
-        }
-    }
-
-    const saveToLocalStorage = (arr) => {
-        localStorage.setItem('bookmarked', JSON.stringify(arr))
-    }
-
-    const removeBookmark = (slug) => {
-        const saved = localStorage.getItem('bookmarked')
-        const arr = JSON.parse(saved)
-        const removed = arr.filter(item => item !== slug)
-        setBookmarkList(removed)
-        saveToLocalStorage(removed)
-    }
-
-    const checkBookmark = (slug) => {
-        if(bookmarkList.includes(slug)){
-            return true
-        }else{
-            return false
-        }
-    }
 
     useEffect(() => {
         const saved = localStorage.getItem('bookmarked')
@@ -47,14 +18,6 @@ const Post = ({ post }) => {
             setBookmarkList(JSON.parse(saved))
         }
     }, [])
-
-    const bookmark = (slug) => {
-        const saved = localStorage.getItem('bookmarked')
-        const wrapper = JSON.parse(saved)
-        wrapper.push(slug)
-        setBookmarkList(wrapper)
-        saveToLocalStorage(wrapper)
-    }
 
     return (
         <Wrapper>
@@ -77,7 +40,10 @@ const Post = ({ post }) => {
                             <div className="user-name">{post.writer}</div>
                             <div className="date-published">{dateFormatter(post.createdAt)}</div>
                         </div>
-                        <span className={`bookmark ${checkBookmark(post.slug) ? 'bookmarked' : ''}`} onClick={() => {checkBookmark(post.slug) ? removeBookmark(post.slug) : bookmark(post.slug)}}>{ checkBookmark(post.slug) ? <MdBookmark/> : <MdBookmarkBorder/> }</span>
+                        <div className="post-feature">
+                            <span className="readtime">{readTime(post.article)} Min Read</span>
+                            <span className={`bookmark ${checkBookmark(post.slug, bookmarkList) ? 'bookmarked' : ''}`} onClick={() => {checkBookmark(post.slug, bookmarkList) ? removeBookmark(post.slug, setBookmarkList) : bookmark(post.slug, setBookmarkList)}}>{ checkBookmark(post.slug, bookmarkList) ? <MdBookmark/> : <MdBookmarkBorder/> }</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -170,13 +136,25 @@ const Wrapper = Styled.li`
             }
         }
 
-        .bookmark{
-            display: flex;
-            border-radius: 50%;
+        .post-feature{
             margin-left: auto;
-            font-size: 1.75rem;
-            cursor:pointer;
-            color:#aaa;
+            display: flex;
+            align-items:center;
+
+            .readtime{
+                margin-right:8px;
+                font-weight:600;
+                color:#aaa;
+                font-size:.9rem;
+            }
+
+            .bookmark{
+                display: flex;
+                border-radius: 50%;
+                font-size: 1.75rem;
+                cursor:pointer;
+                color:#aaa;
+            }
         }
 
         .bookmarked{

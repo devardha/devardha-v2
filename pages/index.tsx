@@ -58,7 +58,7 @@ export async function getStaticProps() {
     const { posts } = await graphcms.request(
         `
         {
-            posts{
+            posts(stage: PUBLISHED){
                 title,
                 article,
                 slug,

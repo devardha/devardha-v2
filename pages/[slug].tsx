@@ -2,17 +2,17 @@ import React from 'react'
 import Styled from '@emotion/styled'
 import { GraphQLClient } from 'graphql-request'
 import Layout from '../components/Layout'
-import { format } from 'date-fns'
 import ReactMarkdown from 'react-markdown'
+import Head from 'next/head'
+import { dateFormatter } from '../utils/date'
 
 const Article = ({ post }) => {
-    const dateFormatter = (date) => {
-        return format(new Date(date), "MMMM dd, yyy")
-    }
-
     return (
         <Wrapper>
-            <Layout title={`${post.title} | devArdha Blog`}>
+            <Layout title={`${post.title} | devArdha Blog`} description={post.description}>
+                <Head>
+
+                </Head>
                 <div className="page-head">
                     <h1>{post.title}</h1>
                     <div className="author-detail">
@@ -79,7 +79,8 @@ Article.getInitialProps = async ({ query: { slug } }) => {
                 article,
                 image,
                 writer,
-                createdAt
+                createdAt,
+                description
             }
         }
         `
