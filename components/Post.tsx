@@ -85,7 +85,7 @@ const Wrapper = Styled.li`
 
             &:hover{
                 .title{
-                    color: #0e18ff;
+                    color: #ff397a;
                 }
             }
         }
@@ -95,11 +95,13 @@ const Wrapper = Styled.li`
             margin-bottom:8px;
             font-size:1.3rem;
             line-height: 1.8rem;
+            color:var(--color);
         }
 
         .subtitle{
             font-weight:300;
             line-height:1.5rem;
+            color:var(--color);
         }
     }
 
@@ -124,6 +126,7 @@ const Wrapper = Styled.li`
             display:flex;
             flex-direction:column;
             font-weight:400;
+            color:var(--color);
 
             .user-name{
                 margin-bottom:4px;
@@ -143,7 +146,7 @@ const Wrapper = Styled.li`
 
             .readtime{
                 margin-right:8px;
-                color:#aaa;
+                color:var(--color-light);
                 font-size:.9rem;
             }
 
@@ -152,12 +155,12 @@ const Wrapper = Styled.li`
                 border-radius: 50%;
                 font-size: 1.75rem;
                 cursor:pointer;
-                color:#aaa;
+                color:var(--color-light);
             }
         }
 
         .bookmarked{
-            color:#0e18ff !important;
+            color:#ff397a !important;
         }
     }
 

@@ -3,14 +3,17 @@ import Styled from '@emotion/styled'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { IoMdMoon } from 'react-icons/io'
+import { HiSun } from 'react-icons/hi'
+import { useTheme } from 'next-themes'
     
 const Navbar = () => {
     const router = useRouter()
+    const { theme, setTheme } = useTheme()
 
     return (
         <Wrapper>
             <ul>
-                <span className="dark-mode"><IoMdMoon/></span>
+                <span className="dark-mode" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>{theme === 'light' ? <IoMdMoon/> : <HiSun/>}</span>
                 <div className="list">
                     <Link href="/"><li className={router.pathname === '/' ? 'active' : ''}>Home</li></Link>
                     <Link href="/about"><li className={router.pathname === '/about' ? 'active' : ''}>About</li></Link>
@@ -30,7 +33,7 @@ const Wrapper = Styled.nav`
     padding: 2rem 1.5rem;
     position: fixed;
     z-index: 1;
-    background: #fff;
+    background:var(--background);
     top: 0;
 
     .dark-mode{
@@ -59,17 +62,17 @@ const Wrapper = Styled.nav`
         margin:0 auto;
         
         li{
-            color:#000;
+            color:var(--color);
             margin-left:1.5rem;
             cursor:pointer;
             
             &:hover{
-                color:#0e18ff;
+                color:#ff397a;
             }
         }
 
         .active{
-            color:#0e18ff;
+            color:#ff397a;
             font-weight: 600;
         }
     }

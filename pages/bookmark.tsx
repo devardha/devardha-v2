@@ -2,18 +2,10 @@ import { useEffect, useState } from 'react'
 import Styled from '@emotion/styled'
 import Layout from '../components/Layout'
 import { request, gql } from 'graphql-request'
-import Link from 'next/link'
+import Post from '../components/Post'
     
 const Bookmark = () => {
     const [bookmarkList, setBookmarkList] = useState([])
-
-    const limitCharacter = (text: any, count: number) => {
-        if(!text){
-            return ''
-        }else{
-            return text.slice(0, count) + (text.length > count ? "..." : "");
-        }
-    }
 
     useEffect(() => {
         const saved = localStorage.getItem('bookmarked')
@@ -34,7 +26,9 @@ const Bookmark = () => {
                     title,
                     slug,
                     image,
-                    article
+                    article,
+                    createdAt,
+                    description
                 }
             }
             `
@@ -59,19 +53,7 @@ const Bookmark = () => {
                                     {
                                         bookmarkList?.map((post, index) => {
                                             return(
-                                                <div className="post" key={index}>
-                                                    <div className="post-image">
-                                                        <img src={post.image} alt={post.title}/>
-                                                    </div>
-                                                    <div className="post-preview">
-                                                        <Link href={post.slug}>
-                                                        <div className="postpreview-top">
-                                                            <div className="title">{post.title}</div>
-                                                            <div className="subtitle">{limitCharacter(post.article, 110)}</div>
-                                                        </div>
-                                                        </Link>
-                                                    </div>
-                                                </div>
+                                                <Post post={post} key={index}/>
                                             )
                                         })
                                     }
@@ -96,65 +78,11 @@ const Wrapper = Styled.div`
         margin-top: 6rem;
     }
 
-    .post{
-        display:flex;
-        width:100%;
-        margin:1.5rem 0;
-        flex-direction: column;
-
-        .post-image{
-            width:100%;
-            height:210px;
-
-            img{
-                border-radius:8px 8px 0 0;
-            }
-        }
-
-        .post-preview{
-            width:100%;
-            padding:1rem 0 1.5rem 0;
-            display:flex;
-            flex-direction:column;
-            justify-content: center;
-
-            .postpreview-top{
-                cursor:pointer;
-
-                &:hover{
-                    .title{
-                        color: #0e18ff;
-                    }
-                }
-            }
-
-            .title{
-                font-weight:bold;
-                margin-bottom:8px;
-                font-size:1.3rem;
-                line-height: 1.8rem;
-            }
-
-            .subtitle{
-                font-weight:300;
-                line-height:1.5rem;
-            }
-        }
-    }
-
-    img{
-        width:100%;
-        height:100%;
-        object-fit:cover;
-    }
-
     @media(min-width:768px){
         .posts{
             padding: 0;
         }
-        .post{
-            flex-direction: row;
-        }
+
         .page-head{
             padding:0;
 
@@ -163,20 +91,9 @@ const Wrapper = Styled.div`
                 line-height:3.5rem;
             }
         }
+
         .page-body{
             padding:0;
-        }
-        .post-image{
-            width:35% !important;
-            height:160px;
-
-            img{
-                border-radius:8px 0 0 8px;
-            }
-        }
-        .post-preview{
-            width:65% !important;
-            padding:1.5rem !important;
         }
     }
 `

@@ -12,8 +12,8 @@ const About = () => {
                         <div className="user-profile">
                             <img src="https://avatars2.githubusercontent.com/u/59217768?s=460&u=50eeaffa0e1ec4afc5e16c991ed85db955b7dc2b&v=4" alt="devardha profile"/>
                         </div>
-                        <span>devardha</span>
-                        <span className="date">December 05, 2020</span>
+                        <span className="name">by devardha</span>
+                        <span className="date">on December 05, 2020</span>
                     </div>
                 </div>
                 <div className="page-body">
@@ -36,9 +36,13 @@ const Wrapper = Styled.div`
         align-items:center;
         font-size:.9rem;
 
+        .name{
+            color:var(--color);
+        }
+
         .date{
-            color:#777;
-            margin-left:1rem;
+            color:var(--color-secondary);
+            margin-left:5px;
         }
     }
 
