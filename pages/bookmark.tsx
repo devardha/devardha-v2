@@ -75,7 +75,7 @@ const Wrapper = Styled.div`
     }
 
     .page-head{
-        margin-top: 6rem;
+        margin-top: 8rem;
     }
 
     @media(min-width:768px){

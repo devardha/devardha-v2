@@ -48,6 +48,11 @@ const Wrapper = Styled.div`
             max-width:800px !important;
         }
     }
+
+    .page-head{
+        margin-top:8rem;
+    }
+
     .author-detail{
         display:flex;
         align-items:center;
@@ -65,7 +70,6 @@ const Wrapper = Styled.div`
 
     @media(min-width:768px){
         .page-head{
-            margin-top:8rem;
             padding:0;
 
             h1{
