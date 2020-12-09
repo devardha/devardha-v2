@@ -143,7 +143,6 @@ const Wrapper = Styled.li`
 
             .readtime{
                 margin-right:8px;
-                font-weight:600;
                 color:#aaa;
                 font-size:.9rem;
             }
@@ -158,7 +157,7 @@ const Wrapper = Styled.li`
         }
 
         .bookmarked{
-            color:#0e18ff;;
+            color:#0e18ff !important;
         }
     }
 

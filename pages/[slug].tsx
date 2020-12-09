@@ -11,7 +11,16 @@ const Article = ({ post }) => {
         <Wrapper>
             <Layout title={`${post.title} | devArdha Blog`} description={post.description}>
                 <Head>
+                    <meta property="og:title" content={post.title} />
+                    <meta property="og:url" content={`https:devardha.vercel.app/${post.slug}`} />
+                    <meta property="og:description" content={post.description} />
+                    <meta property="og:image" content={post.image} />
 
+                    <meta property="twitter:card" content="summary"/>
+                    <meta property="twitter:title" content={post.title}/>
+                    <meta property="twitter:description" content={post.description}/>
+                    <meta property="twitter:url" content={`https:devardha.vercel.app/${post.slug}`}/>
+                    <meta property="twitter:image" content={post.image}/>
                 </Head>
                 <div className="page-head">
                     <h1>{post.title}</h1>
