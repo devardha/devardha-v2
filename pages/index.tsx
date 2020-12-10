@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { GraphQLClient } from 'graphql-request';
+import Head from 'next/head';
 import Layout from '../components/Layout';
 import Post from '../components/Post';
 
@@ -18,7 +19,19 @@ export default function Home({ posts }) {
 
     return (
         <Wrapper>
-            <Layout title="devArdha Blog | Full Stack Web Developer">
+            <Layout title="DevArdha Blog | Full Stack Web Developer">
+                <Head>
+                    <meta property="og:title" content="Dev Ardha Personal Blog" />
+                    <meta property="og:url" content="https:devardha.vercel.app" />
+                    <meta property="og:description" content="Personal Blog milik Dev Ardha, Full Stack Web Developer" />
+                    <meta property="og:image" content="https://avatars2.githubusercontent.com/u/59217768?s=460&u=50eeaffa0e1ec4afc5e16c991ed85db955b7dc2b&v=4" />
+
+                    <meta property="twitter:card" content="summary"/>
+                    <meta property="twitter:title" content="Dev Ardha Personal Blog"/>
+                    <meta property="twitter:description" content="Personal Blog milik Dev Ardha, Full Stack Web Developer"/>
+                    <meta property="twitter:url" content="https:devardha.vercel.app"/>
+                    <meta property="twitter:image" content="https://avatars2.githubusercontent.com/u/59217768?s=460&u=50eeaffa0e1ec4afc5e16c991ed85db955b7dc2b&v=4"/>
+                </Head>
                 <div className="posts">
                     <ul>
                         {

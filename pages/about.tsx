@@ -5,7 +5,7 @@ import Layout from '../components/Layout'
 const About = () => {
     return (
         <Wrapper>
-            <Layout title="About | devArdha Blog">
+            <Layout title="About | DevArdha Blog">
                 <div className="page-head">
                     <h1>About</h1>
                     <div className="author-detail">
@@ -17,8 +17,8 @@ const About = () => {
                     </div>
                 </div>
                 <div className="page-body">
-                    <p>Nama Saya Yudhatama Indra Wardhana. Saya seorang Full-Stack Web Developer. Saya seorang mahasiswa yang sekarang sedang berkuliah semester dua di jurusan Teknik Informatika Universitas Semarang.</p>
-                    <p>Masuk ke dunia pemrograman sejak lulus sma, PHP menjadi bahasa pertama saya. Namun saya kemudian jatuh cinta dengan JavaScript dan mulai mendalami dunia front-end web development dan kemudian berkenalan dengan React.js. Kini saya mencoba menambah skill saya dengan belajar Node.js dan Deno untuk melengkapi tech stack saya sebagai seorang Full-Stack Javascript Developer</p>
+                    <p>Hai, nama saya Ardha. Saya seorang Fullstack Web Developer sekaligus blogger yang biasa menulis di blog ini dan juga <a href="http://ardhayudhatama.com">ardhayudhatama.com</a>. Saya tinggal di Kota Semarang, Indonesia, dan sedang menempuh kuliah di jurusan Teknik Informatika Universitas Semarang.</p>
+                    <p>Saya biasa berurusan dengan website dan teknologi-teknologi yang berada di sekitarnya. Keahlian saya ada di Reactjs dan Node.js. Bahasa favorit saya adalah Javascript, walaupun sekarang saya lebih sering menulis menggunakan Typescript.</p>
                 </div>
             </Layout>
         </Wrapper>

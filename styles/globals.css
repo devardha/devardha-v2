@@ -12,7 +12,7 @@
     --background: #fff;
     --color:#000;
     --color-secondary:#777;
-    --color-light:#aaa;
+    --color-light:#999;
     --color-link:#ff397a;
 }
 
@@ -131,11 +131,31 @@ p{
 }
 
 .page-head .user-profile{
-    height:30px;
-    width:30px;
+    height:25px;
+    width:25px;
     background-color:#eee;
     margin-right:1rem;
     border-radius:50%;
+}
+
+.post-info{
+    width:100%;
+    margin-top:.5rem;
+}
+
+@media(min-width:512px){
+    .post-info{
+        width:unset;
+        margin-top:0;
+        margin-left:auto;
+    }
+}
+
+@media(min-width:768px){
+    .page-head .user-profile{
+        height:30px;
+        width:30px;
+    }
 }
 
 .user-profile img{

@@ -41,7 +41,7 @@ const Bookmark = () => {
 
     return (
         <Wrapper>
-            <Layout title="Bookmark | devArdha Blog">
+            <Layout title="Bookmark | DevArdha Blog">
                 <div className="page-head">
                     <h1>Bookmark</h1>
                 </div>

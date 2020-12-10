@@ -1,15 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Styled from '@emotion/styled'
 import { GraphQLClient } from 'graphql-request'
 import Layout from '../components/Layout'
 import ReactMarkdown from 'react-markdown'
 import Head from 'next/head'
 import { dateFormatter } from '../utils/date'
+import firebase from '../lib/firebase'
 
 const Article = ({ post }) => {
+    const [viewers, setViewers]: any = useState()
+    const incrementViews = async (slug) => {
+        const db = firebase.firestore()
+            const views = await db.collection('blogviews').doc(slug).get().then(view => {
+                if(view.data()){
+                    return view.data().viewsCount
+                }
+
+                return 0
+            })
+
+            await db.collection('blogviews').doc(slug).set({ postId: slug, viewsCount: views + 1})
+            setViewers(views + 1)
+    }
+
+    useEffect(() => {
+        incrementViews(post.slug)
+    }, [post.slug])
+
     return (
         <Wrapper>
-            <Layout title={`${post.title} | devArdha Blog`} description={post.description}>
+            <Layout title={`${post.title} | DevArdha Blog`} description={post.description}>
                 <Head>
                     <meta property="og:title" content={post.title} />
                     <meta property="og:url" content={`https:devardha.vercel.app/${post.slug}`} />
@@ -30,6 +50,13 @@ const Article = ({ post }) => {
                         </div>
                         <span className="name">by {post.writer}</span>
                         <span className="date">on {dateFormatter(post.createdAt)}</span>
+                        <span className="post-info">
+                            <span>9 min read •</span>
+                            <span className="views">{ viewers ? viewers : '---' } views</span>
+                        </span>
+                    </div>
+                    <div className="post-image">
+                        <img src={post.image} alt={post.title}/>
                     </div>
                 </div>
                 <div className="page-body">
@@ -51,12 +78,28 @@ const Wrapper = Styled.div`
 
     .page-head{
         margin-top:8rem;
+
+        .post-image{
+            width:100%;
+            margin-top:2rem;
+
+            img{
+                width:100%;
+                height:100%;
+                object-fit:cover;
+            }
+        }
     }
 
     .author-detail{
         display:flex;
         align-items:center;
         font-size:.9rem;
+        flex-wrap:wrap;
+
+        .post-info{
+            color:#777;
+        }
 
         .name{
             color:var(--color);
@@ -65,6 +108,10 @@ const Wrapper = Styled.div`
         .date{
             color:var(--color-secondary);
             margin-left:5px;
+        }
+
+        .views{
+            margin-left:4px;
         }
     }
 
@@ -97,7 +144,8 @@ Article.getInitialProps = async ({ query: { slug } }) => {
                 image,
                 writer,
                 createdAt,
-                description
+                description,
+                slug
             }
         }
         `
