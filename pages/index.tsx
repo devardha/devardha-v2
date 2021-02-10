@@ -60,7 +60,7 @@ const Wrapper = styled.div`
     @media(min-width:768px){
         .posts{
             padding: 0;
-            margin-top:6rem;
+            margin-top:7rem;
         }
     }
 `

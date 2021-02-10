@@ -33,7 +33,8 @@ const Wrapper = Styled.nav`
     padding: 2rem 1.5rem;
     position: fixed;
     z-index: 1;
-    background:var(--background);
+    background:rgb(255,255,255,0.9);
+    backdrop-filter:saturate(180%) blur(20px);
     top: 0;
 
     .dark-mode{
@@ -78,6 +79,8 @@ const Wrapper = Styled.nav`
     }
 
     @media(min-width:768px){
+        padding: 1.5rem;
+
         ul{
             li{
                 margin-left:2rem;
