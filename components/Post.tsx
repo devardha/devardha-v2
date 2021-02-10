@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Styled from '@emotion/styled'
 import Link from 'next/link'
-import { MdBookmarkBorder, MdBookmark } from 'react-icons/md'
+import { IoBookmarkOutline, IoBookmark } from 'react-icons/io5'
 import { dateFormatter } from '../utils/date'
 import { limitCharacter, readTime } from '../utils/post'
 import { saveToLocalStorage, bookmark, checkBookmark, removeBookmark } from '../utils/bookmark'
@@ -42,7 +42,7 @@ const Post = ({ post }) => {
                         </div>
                         <div className="post-feature">
                             <span className="readtime">{readTime(post.article)} Min Read</span>
-                            <span className={`bookmark ${checkBookmark(post.slug, bookmarkList) ? 'bookmarked' : ''}`} onClick={() => {checkBookmark(post.slug, bookmarkList) ? removeBookmark(post.slug, setBookmarkList) : bookmark(post.slug, setBookmarkList)}}>{ checkBookmark(post.slug, bookmarkList) ? <MdBookmark/> : <MdBookmarkBorder/> }</span>
+                            <span className={`bookmark ${checkBookmark(post.slug, bookmarkList) ? 'bookmarked' : ''}`} onClick={() => {checkBookmark(post.slug, bookmarkList) ? removeBookmark(post.slug, setBookmarkList) : bookmark(post.slug, setBookmarkList)}}>{ checkBookmark(post.slug, bookmarkList) ? <IoBookmark/> : <IoBookmarkOutline/> }</span>
                         </div>
                     </div>
                 </div>
@@ -153,7 +153,7 @@ const Wrapper = Styled.li`
             .bookmark{
                 display: flex;
                 border-radius: 50%;
-                font-size: 1.75rem;
+                font-size: 1.25rem;
                 cursor:pointer;
                 color:var(--color-light);
             }
