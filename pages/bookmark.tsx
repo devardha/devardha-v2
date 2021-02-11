@@ -74,6 +74,10 @@ const Wrapper = Styled.div`
         padding: 0 1.5rem;
     }
 
+    .page-body{
+        min-height:50vh;
+    }
+
     .page-head{
         margin-top: 8rem;
     }
