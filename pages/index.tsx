@@ -3,6 +3,7 @@ import { GraphQLClient } from 'graphql-request';
 import Head from 'next/head';
 import Layout from '../components/Layout';
 import Post from '../components/Post';
+import SubscribeBox from '../components/SubscribeBox';
 
 export default function Home({ posts }) {
     function compare( a, b ) {
@@ -43,6 +44,9 @@ export default function Home({ posts }) {
                         }
                     </ul>
                 </div>
+                <div className="wrapper">
+                    <SubscribeBox/>
+                </div>
             </Layout>
         </Wrapper>
     )
@@ -59,8 +63,13 @@ const Wrapper = styled.div`
 
     @media(min-width:768px){
         .posts{
-            padding: 0;
             margin-top:7rem;
+        }
+    }
+
+    @media(min-width:1024px){
+        .posts{
+            padding: 0;
         }
     }
 `

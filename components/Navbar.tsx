@@ -38,14 +38,15 @@ const Wrapper = Styled.nav`
     top: 0;
 
     .dark-mode{
-        background-color: #EDF2F7;
+        background-color: var(--btn-bg);
+        color:var(--color);
         padding: 12px;
         display: flex;
         border-radius: 4px;
         cursor:pointer;
 
         &:hover{
-            background-color: #e7eef5;
+            background-color: var(--btn-bg-hover);
         }
     }
 

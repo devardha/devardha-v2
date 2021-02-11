@@ -11,19 +11,45 @@
 :root {
     --background: #fff;
     --nav-background: rgb(255,255,255,0.9);
+
     --color:#000;
     --color-secondary:#777;
     --color-light:#999;
     --color-link:#ff397a;
+
+    --btn-bg:#EDF2F7;
+    --btn-bg-hover:#e7eef5;
+
+    --newsletter-border:#91f1d9;
+    --newsletter-bg:#f1fffb;
+    --newsletter-input:#fff;
+    --newsletter-input-placeholder:#ccc;
+    --newsletter-heading:#000;
+    --newsletter-btn-text:#fff;
+    --newsletter-btn-bg:#111;
+    --newsletter-btn-bg-hover:#000;
 }
 
 [data-theme='dark'] {
     --background: #0d1117;
     --nav-background: rgb(13,17,23,0.85);
+
     --color:#fff;
     --color-secondary:#8b949e;
     --color-light:#8b949e;
     --color-link:#ff397a;
+
+    --btn-bg:#151a23;
+    --btn-bg-hover:#191e29;
+
+    --newsletter-border:#151a23;
+    --newsletter-bg:#151a23;
+    --newsletter-input:#12171f;
+    --newsletter-input-placeholder:#4b5769;
+    --newsletter-heading:#ff397a;
+    --newsletter-btn-text:#fff;
+    --newsletter-btn-bg:#ff397a;
+    --newsletter-btn-bg-hover:#fd4784;
 }
 
 html,
@@ -41,6 +67,7 @@ a {
 
 * {
     box-sizing: border-box;
+    transition:all ease-in-out .1s;
 }
 
 ul{

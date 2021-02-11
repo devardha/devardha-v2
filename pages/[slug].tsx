@@ -6,6 +6,7 @@ import ReactMarkdown from 'react-markdown'
 import Head from 'next/head'
 import { dateFormatter } from '../utils/date'
 import firebase from '../lib/firebase'
+import SubscribeBox from '../components/SubscribeBox'
 
 const Article = ({ post }) => {
     const [viewers, setViewers]: any = useState()
@@ -63,6 +64,9 @@ const Article = ({ post }) => {
                     <ReactMarkdown>
                     {post.article}
                     </ReactMarkdown>
+                </div>
+                <div className="wrapper">
+                    <SubscribeBox/>
                 </div>
             </Layout>
         </Wrapper>
