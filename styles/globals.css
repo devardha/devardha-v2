@@ -10,6 +10,7 @@
 
 :root {
     --background: #fff;
+    --nav-background: rgb(255,255,255,0.9);
     --color:#000;
     --color-secondary:#777;
     --color-light:#999;
@@ -18,6 +19,7 @@
 
 [data-theme='dark'] {
     --background: #0d1117;
+    --nav-background: rgb(13,17,23,0.85);
     --color:#fff;
     --color-secondary:#8b949e;
     --color-light:#8b949e;

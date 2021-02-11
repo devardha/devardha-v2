@@ -33,7 +33,7 @@ const Wrapper = Styled.nav`
     padding: 2rem 1.5rem;
     position: fixed;
     z-index: 1;
-    background:rgb(255,255,255,0.9);
+    background:var(--nav-background);
     backdrop-filter:saturate(180%) blur(20px);
     top: 0;
 
