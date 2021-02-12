@@ -33,7 +33,7 @@ const Bookmark = () => {
             }
             `
     
-            request('https://api-ap-northeast-1.graphcms.com/v2/ckibuuti2cx3z01z2e430ak7k/master', query).then(res => {
+            request(process.env.NEXT_PUBLIC_GRAPHCMS, query).then(res => {
                 setBookmarkList(res.posts)
             }).catch(err => console.log(err))
         }

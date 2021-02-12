@@ -75,7 +75,7 @@ const Wrapper = styled.div`
 `
 
 export async function getStaticProps() {
-    const graphcms = new GraphQLClient('https://api-ap-northeast-1.graphcms.com/v2/ckibuuti2cx3z01z2e430ak7k/master')
+    const graphcms = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS)
 
     const { posts } = await graphcms.request(
         `

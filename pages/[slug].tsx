@@ -10,22 +10,45 @@ import SubscribeBox from '../components/SubscribeBox'
 
 const Article = ({ post }) => {
     const [viewers, setViewers]: any = useState()
+    const env = process.env.NEXT_PUBLIC_ENV || 'development'
+
     const incrementViews = async (slug) => {
         const db = firebase.firestore()
-            const views = await db.collection('blogviews').doc(slug).get().then(view => {
-                if(view.data()){
-                    return view.data().viewsCount
-                }
+        const views = await db.collection('blogviews').doc(slug).get().then(view => {
+            if(view.data()){
+                return view.data().viewsCount
+            }
 
-                return 0
-            })
+            return 0
+        })
 
-            await db.collection('blogviews').doc(slug).set({ postId: slug, viewsCount: views + 1})
-            setViewers(views + 1)
+        await db.collection('blogviews').doc(slug).set({ postId: slug, viewsCount: views + 1})
+        setViewers(views + 1)
+    }
+
+    const sendPageviews = async (slug) => {
+        const db = firebase.firestore()
+
+        const getCountry = async () => {
+            const res = await (await fetch('https://ipapi.co/json/')).json()
+            const country_name = res.country_name
+            return country_name
+        }
+
+        const country = await getCountry()
+
+        // Add pageviews for analytics
+        db.collection('pageviews').doc(slug).collection('views').doc().set({
+            createdAt: new Date,
+            country_name: country
+        })
     }
 
     useEffect(() => {
-        incrementViews(post.slug)
+        if(env === 'production'){
+            sendPageviews(post.slug)
+            incrementViews(post.slug)
+        }
     }, [post.slug])
 
     return (
@@ -136,7 +159,7 @@ const Wrapper = Styled.div`
 `
 
 Article.getInitialProps = async ({ query: { slug } }) => {
-    const graphcms = new GraphQLClient('https://api-ap-northeast-1.graphcms.com/v2/ckibuuti2cx3z01z2e430ak7k/master')
+    const graphcms = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS)
     const { post } = await graphcms.request(
         `
         {
