@@ -143,11 +143,12 @@ const Wrapper = Styled.li`
             margin-left: auto;
             display: flex;
             align-items:center;
+            align-self:flex-end;
 
             .readtime{
                 margin-right:8px;
                 color:var(--color-light);
-                font-size:.9rem;
+                font-size:.8rem;
             }
 
             .bookmark{
