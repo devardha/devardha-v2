@@ -143,6 +143,16 @@ p{
     font-weight: 500;
 }
 
+.page-body pre{
+    border-radius: 4px !important;
+    padding:1.5em;
+}
+
+.page-body pre code{
+    background:transparent;
+    padding:0;
+}
+
 .page-head{
     max-width:800px;
     margin:0 auto;

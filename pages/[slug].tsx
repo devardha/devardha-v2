@@ -7,6 +7,7 @@ import Head from 'next/head'
 import { dateFormatter } from '../utils/date'
 import firebase from '../lib/firebase'
 import SubscribeBox from '../components/SubscribeBox'
+import CodeBlock from '../components/CodeBlock'
 
 const Article = ({ post }) => {
     const [viewers, setViewers]: any = useState()
@@ -84,9 +85,7 @@ const Article = ({ post }) => {
                     </div>
                 </div>
                 <div className="page-body">
-                    <ReactMarkdown>
-                    {post.article}
-                    </ReactMarkdown>
+                    <ReactMarkdown escapeHtml={true} source={post.article} renderers={{ code: CodeBlock }}/>
                 </div>
                 <div className="wrapper">
                     <SubscribeBox/>

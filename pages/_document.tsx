@@ -13,6 +13,7 @@ class MyDocument extends Document {
             <meta name="google-site-verification" content="cZYgsI0SJ5BBBenW58_cU69ilFysafA8Jwv0xiz8MqE" />
         </Head>
         <body>
+          <script src={`/scripts/noflash.js`}/>
           <Main />
           <NextScript />
         </body>
