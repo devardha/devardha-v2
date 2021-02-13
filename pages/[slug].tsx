@@ -46,7 +46,8 @@ const Article = ({ post }) => {
     }
 
     useEffect(() => {
-        if(env === 'production'){
+        const trackme = localStorage.getItem('trackme')
+        if(env === 'production' && !trackme){
             sendPageviews(post.slug)
             incrementViews(post.slug)
         }

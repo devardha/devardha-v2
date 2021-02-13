@@ -1,13 +1,13 @@
 import React, { PureComponent } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { nord } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import style from '../lib/prism'
 
 class CodeBlock extends PureComponent {
     render() {
         const { language, value,  }: any = this.props;
 
         return (
-            <SyntaxHighlighter language={language} style={nord} showLineNumbers={true}>
+            <SyntaxHighlighter language={language} style={style} showLineNumbers={true}>
                 {value}
             </SyntaxHighlighter>
         );

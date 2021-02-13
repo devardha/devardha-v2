@@ -146,6 +146,7 @@ p{
     border-radius: 4px !important;
     padding:1.5em !important;
     font-size:.8rem !important;
+    background-color: #0f111a !important;
 }
 
 .page-body pre code{
