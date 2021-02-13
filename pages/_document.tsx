@@ -10,7 +10,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-            <meta name="google-site-verification" content="cZYgsI0SJ5BBBenW58_cU69ilFysafA8Jwv0xiz8MqE" />
+          <meta name="google-site-verification" content="b6BJLQnbDvN130az4qbr0au52xEmKPLMxuElH1X_zVI" />
         </Head>
         <body>
           <script src={`/scripts/noflash.js`}/>
