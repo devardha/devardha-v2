@@ -8,6 +8,7 @@ import { dateFormatter } from '../utils/date'
 import firebase from '../lib/firebase'
 import SubscribeBox from '../components/SubscribeBox'
 import CodeBlock from '../components/CodeBlock'
+import { readTime } from '../utils/post'
 
 const Article = ({ post }) => {
     const [viewers, setViewers]: any = useState()
@@ -77,7 +78,7 @@ const Article = ({ post }) => {
                         <span className="name">by {post.writer}</span>
                         <span className="date">on {dateFormatter(post.createdAt)}</span>
                         <span className="post-info">
-                            <span>9 min read •</span>
+                            <span>{readTime(post.article)} Min Read •</span>
                             <span className="views">{ viewers ? viewers : '---' } views</span>
                         </span>
                     </div>
