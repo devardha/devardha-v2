@@ -5,52 +5,19 @@ import Layout from '../components/Layout'
 import ReactMarkdown from 'react-markdown'
 import Head from 'next/head'
 import { dateFormatter } from '../utils/date'
-import firebase from '../lib/firebase'
 import SubscribeBox from '../components/SubscribeBox'
 import CodeBlock from '../components/CodeBlock'
 import { readTime } from '../utils/post'
+import { trackUser } from '../utils/usertracking'
 
 const Article = ({ post }) => {
     const [viewers, setViewers]: any = useState()
     const env = process.env.NEXT_PUBLIC_ENV || 'development'
 
-    const incrementViews = async (slug) => {
-        const db = firebase.firestore()
-        const views = await db.collection('blogviews').doc(slug).get().then(view => {
-            if(view.data()){
-                return view.data().viewsCount
-            }
-
-            return 0
-        })
-
-        await db.collection('blogviews').doc(slug).set({ postId: slug, viewsCount: views + 1})
-        setViewers(views + 1)
-    }
-
-    const sendPageviews = async (slug) => {
-        const db = firebase.firestore()
-
-        const getCountry = async () => {
-            const res = await (await fetch('https://ipapi.co/json/')).json()
-            const country_name = res.country_name
-            return country_name
-        }
-
-        const country = await getCountry()
-
-        // Add pageviews for analytics
-        db.collection('pageviews').doc(slug).collection('views').doc().set({
-            createdAt: new Date,
-            country_name: country
-        })
-    }
-
     useEffect(() => {
         const trackme = localStorage.getItem('trackme')
         if(env === 'production' && !trackme){
-            sendPageviews(post.slug)
-            incrementViews(post.slug)
+            trackUser(post.slug)
         }
     }, [post.slug])
 
