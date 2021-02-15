@@ -13,6 +13,7 @@ import CommentBox from '../components/CommentBox'
 import firebase from '../lib/firebase'
 import { v4 as uuid } from 'uuid';
 import { useQuery } from 'react-query'
+import SocialShare from '../components/SocialShare'
 
 const Article = ({ post }) => {
     const [viewers, setViewers]: any = useState()
@@ -144,6 +145,7 @@ const Article = ({ post }) => {
                         </span>
                     </div>
                     <div className="post-image">
+                        <SocialShare url={`${domain}/${post.slug}`} title={post.title}/>
                         <img src={post.image} alt={post.title}/>
                     </div>
                 </div>
@@ -179,6 +181,7 @@ const Wrapper = Styled.div`
 
         .post-image{
             width:100%;
+            position:relative;
             margin-top:2rem;
 
             img{
