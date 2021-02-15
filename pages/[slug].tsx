@@ -110,8 +110,8 @@ const Article = ({ post }) => {
     }
 
     useEffect(() => {
-        const trackme = localStorage.getItem('trackme')
-        if(env === 'production' && !trackme){
+        const trackme = localStorage.getItem('trackme') || true
+        if(env === 'production' && trackme === true){
             trackUser(post.slug)
         }
     }, [post.slug])
