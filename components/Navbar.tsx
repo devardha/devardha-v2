@@ -38,7 +38,7 @@ const Wrapper = Styled.nav`
     top: 0;
 
     .dark-mode{
-        background-color: var(--btn-bg);
+        background-color: var(--switch-btn-bg);
         color:var(--color);
         padding: 12px;
         display: flex;
@@ -46,7 +46,7 @@ const Wrapper = Styled.nav`
         cursor:pointer;
 
         &:hover{
-            background-color: var(--btn-bg-hover);
+            background-color: var(--switch-btn-bg-hover);
         }
     }
 
@@ -69,12 +69,12 @@ const Wrapper = Styled.nav`
             cursor:pointer;
             
             &:hover{
-                color:#ff397a;
+                color:var(--color-link-hover);
             }
         }
 
         .active{
-            color:#ff397a;
+            color:var(--color-link-active);
             font-weight: 600;
         }
     }

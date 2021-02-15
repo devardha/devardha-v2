@@ -101,8 +101,8 @@ const StyledComponent = Styled.div`
             right:1rem;
             padding:12px 16px;
             border-radius:8px;
-            background:var(--newsletter-btn-bg);
-            color:var(--newsletter-btn-text);
+            background:var(--btn-bg);
+            color:var(--btn-text);
             border:0;
             font-weight:bold;
             transition:all ease-in-out .1s;
@@ -112,7 +112,7 @@ const StyledComponent = Styled.div`
             }
 
             &:hover{
-                background:var(--newsletter-btn-bg-hover);
+                background:var(--btn-bg-hover);
             }
         }
     }

@@ -15,19 +15,30 @@
     --color:#000;
     --color-secondary:#777;
     --color-light:#999;
-    --color-link:#ff397a;
 
-    --btn-bg:#EDF2F7;
-    --btn-bg-hover:#e7eef5;
+    --color-link:#735dde;
+    --color-link-hover:#735dde;
+    --color-link-active:#735dde;
 
-    --newsletter-border:#91f1d9;
-    --newsletter-bg:#f1fffb;
+    --switch-btn-bg:#EDF2F7;
+    --switch-btn-bg-hover:#e7eef5;
+
+    --input-bg:#fff;
+    --input-border:#DBDFE4;
+    --input-placeholder:#ccc;
+
+    --newsletter-border:#b7afe2;
+    --newsletter-bg:#f9f7ff;
     --newsletter-input:#fff;
     --newsletter-input-placeholder:#ccc;
     --newsletter-heading:#000;
-    --newsletter-btn-text:#fff;
-    --newsletter-btn-bg:#111;
-    --newsletter-btn-bg-hover:#000;
+
+    --code-bg:#735dde;
+    --code-text:#fff;
+
+    --btn-text:#fff;
+    --btn-bg:#735dde;
+    --btn-bg-hover:#6350c1;
 }
 
 [data-theme='dark'] {
@@ -37,19 +48,30 @@
     --color:#fff;
     --color-secondary:#8b949e;
     --color-light:#8b949e;
-    --color-link:#ff397a;
 
-    --btn-bg:#151a23;
-    --btn-bg-hover:#191e29;
+    --color-link:#9a86fd;
+    --color-link-hover:#735dde;
+    --color-link-active:#735dde;
+
+    --switch-btn-bg:#151a23;
+    --switch-btn-bg-hover:#191e29;
+
+    --input-bg:#151a23;
+    --input-border:#151a23;
+    --input-placeholder:#4b5769;
 
     --newsletter-border:#151a23;
     --newsletter-bg:#151a23;
     --newsletter-input:#12171f;
     --newsletter-input-placeholder:#4b5769;
-    --newsletter-heading:#ff397a;
-    --newsletter-btn-text:#fff;
-    --newsletter-btn-bg:#ff397a;
-    --newsletter-btn-bg-hover:#fd4784;
+    --newsletter-heading:#735dde;
+
+    --code-bg:#735dde;
+    --code-text:#fff;
+
+    --btn-text:#fff;
+    --btn-bg:#735dde;
+    --btn-bg-hover:#6350c1;
 }
 
 html,
@@ -81,8 +103,8 @@ pre{
 
 code{
     font-family: 'JetBrains Mono', monospace !important;
-    background: #eee;
-    color:#111;
+    background: var(--code-bg);
+    color:var(--code-text);
     padding: 4px 8px;
     border-radius: 4px;
     font-size: .8rem;
@@ -93,20 +115,15 @@ button{
     cursor: pointer;
 }
 
-.btn-light{
-    padding:.75rem 1rem;
-    font-weight: 300;
-    font-size: 1rem;
-    color:#ff009d;
-    background: #000;
-    border:1px solid #ff009d;
-}
-
 h1,
 h2,
 h3,
 p{
     color:var(--color);
+}
+
+textarea{
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 p{

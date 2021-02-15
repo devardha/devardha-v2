@@ -85,7 +85,7 @@ const Wrapper = Styled.li`
 
             &:hover{
                 .title{
-                    color: #ff397a;
+                    color: #735dde;
                 }
             }
         }
@@ -161,7 +161,7 @@ const Wrapper = Styled.li`
         }
 
         .bookmarked{
-            color:#ff397a !important;
+            color:#735dde !important;
         }
     }
 

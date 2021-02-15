@@ -9,10 +9,77 @@ import SubscribeBox from '../components/SubscribeBox'
 import CodeBlock from '../components/CodeBlock'
 import { readTime } from '../utils/post'
 import { trackUser } from '../utils/usertracking'
+import CommentBox from '../components/CommentBox'
+import firebase from '../lib/firebase'
+import { v4 as uuid } from 'uuid';
+import { useQuery } from 'react-query'
 
 const Article = ({ post }) => {
     const [viewers, setViewers]: any = useState()
+    const [comments, setComments] = useState([])
+    const [totalComment, setTotalComment] = useState(0)
+    const [replyOpen, setReplyOpen] = useState(null)
+
     const env = process.env.NEXT_PUBLIC_ENV || 'development'
+
+    const { data } = useQuery('comments', () =>
+        fetch(`http://localhost:3000/api/comments?slug=${post.slug}`).then(res =>
+            res.json()
+        )
+    )
+
+    useEffect(() => {
+        if(data){
+            setComments(data.data)
+            setTotalComment(data.count)
+        }
+    }, [data])
+
+    const postComment = (e) => {
+        const db = firebase.firestore()
+        e.preventDefault()
+
+        const id = uuid()
+        const name = e.currentTarget.elements.name.value
+        const text = e.currentTarget.elements.text.value
+        const now = new Date
+        var utc_timestamp = Date.UTC(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());
+
+        db.collection('posts').doc(post.slug).collection('comments').doc(id).set({
+            id: id,
+            name: name,
+            createdAt: utc_timestamp,
+            avatar: "",
+            replies: [],
+            parentId: "",
+            text: text,
+            likes: 0,
+        })
+    }
+
+    const postReply = (e) => {
+        const db = firebase.firestore()
+        e.preventDefault()
+
+        const id = uuid()
+        const name = e.currentTarget.elements.name.value
+        const text = e.currentTarget.elements.text.value
+        const now = new Date
+        var utc_timestamp = Date.UTC(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());
+
+        db.collection('posts').doc(post.slug).collection('comments').doc(id).set({
+            id: id,
+            name: name,
+            createdAt: utc_timestamp,
+            avatar: "",
+            replies: [],
+            parentId: replyOpen,
+            text: text,
+            likes: 0,
+        }).then(() => {
+            setReplyOpen(null)
+        })
+    }
 
     useEffect(() => {
         const trackme = localStorage.getItem('trackme')
@@ -57,6 +124,7 @@ const Article = ({ post }) => {
                     <ReactMarkdown escapeHtml={true} source={post.article} renderers={{ code: CodeBlock }}/>
                 </div>
                 <div className="wrapper">
+                    <CommentBox comments={comments} postComment={postComment} postReply={postReply} replyOpen={replyOpen} setReplyOpen={setReplyOpen} totalComment={totalComment}/>
                     <SubscribeBox/>
                 </div>
             </Layout>
