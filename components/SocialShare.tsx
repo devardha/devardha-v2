@@ -19,6 +19,10 @@ const StyledComponent = Styled.div`
     width: 48px;
     transform: translateX(-66px);
 
+    @media(max-width:1080px){
+        display:none;
+    }
+
     ul{
         display:flex;
         flex-direction:column;
