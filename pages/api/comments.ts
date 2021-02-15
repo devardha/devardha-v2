@@ -15,7 +15,7 @@ export default async (req, res) => {
     const slug = req.query.slug
     const db = firebaseAdmin.firestore()
 
-    const comments: any = (await db.collection('posts').doc(slug).collection('comments').get()).docs.map(item => item.data())
+    const comments: any = (await db.collection('posts').doc(slug).collection('comments').orderBy("createdAt", "asc").get()).docs.map(item => item.data())
 
     try {
         const list = []

@@ -18,13 +18,15 @@ const Article = ({ post }) => {
     const [viewers, setViewers]: any = useState()
     const [comments, setComments] = useState([])
     const [totalComment, setTotalComment] = useState(0)
-    const [message, setMessage] = useState('')
+    const [message, setMessage] = useState({})
     const [replyOpen, setReplyOpen] = useState(null)
+    const [loading, setLoading] = useState(false)
 
+    const domain = process.env.NEXT_PUBLIC_DOMAIN || 'http://localhost:3000'
     const env = process.env.NEXT_PUBLIC_ENV || 'development'
 
     const { data } = useQuery('comments', () =>
-        fetch(`http://localhost:3000/api/comments?slug=${post.slug}`).then(res =>
+        fetch(`${domain}/api/comments?slug=${post.slug}`).then(res =>
             res.json()
         )
     )
@@ -37,7 +39,8 @@ const Article = ({ post }) => {
     }, [data])
 
     const postComment = (e) => {
-        setMessage('')
+        setMessage({})
+        setLoading(true)
         const db = firebase.firestore()
         e.preventDefault()
 
@@ -56,15 +59,23 @@ const Article = ({ post }) => {
             parentId: "",
             text: text,
             likes: 0,
-        }).then(() => {
-            setMessage('Comment has been sent')
+        }).then( async () => {
+            const res = await fetch(`${domain}/api/comments?slug=${post.slug}`)
+            const data = await res.json()
+
+            setLoading(false)
+            setComments(data.data)
+            setTotalComment(data.count)
+            setMessage({type:'comment', msg:'Comment has been sent'})
         }).catch(() => {
-            setMessage('Failed to send comment')
+            setMessage({type:'comment', msg:'Failed to send comment'})
+            setLoading(false)
         })
     }
 
     const postReply = (e) => {
-        setMessage('')
+        setMessage({})
+        setLoading(true)
         const db = firebase.firestore()
         e.preventDefault()
 
@@ -83,11 +94,17 @@ const Article = ({ post }) => {
             parentId: replyOpen,
             text: text,
             likes: 0,
-        }).then(() => {
-            setMessage('Reply has been sent')
-            setReplyOpen(null)
+        }).then(async () => {
+            const res = await fetch(`${domain}/api/comments?slug=${post.slug}`)
+            const data = await res.json()
+
+            setLoading(false)
+            setComments(data.data)
+            setTotalComment(data.count)
+            setMessage({type:'reply', msg:'Reply has been sent'})
         }).catch(() => {
-            setMessage('Failed to send reply')
+            setMessage({type:'reply', msg:'Failed to send reply'})
+            setLoading(false)
         })
     }
 
@@ -134,7 +151,15 @@ const Article = ({ post }) => {
                     <ReactMarkdown escapeHtml={true} source={post.article} renderers={{ code: CodeBlock }}/>
                 </div>
                 <div className="wrapper">
-                    <CommentBox comments={comments} postComment={postComment} postReply={postReply} replyOpen={replyOpen} setReplyOpen={setReplyOpen} totalComment={totalComment} message={message}/>
+                    <CommentBox
+                        comments={comments}
+                        postComment={postComment}
+                        postReply={postReply}
+                        replyOpen={replyOpen}
+                        setReplyOpen={setReplyOpen}
+                        setMessage={setMessage}
+                        totalComment={totalComment}
+                        message={message}/>
                     <SubscribeBox/>
                 </div>
             </Layout>
