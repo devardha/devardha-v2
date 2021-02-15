@@ -8,7 +8,6 @@ import { dateFormatter } from '../utils/date'
 import SubscribeBox from '../components/SubscribeBox'
 import CodeBlock from '../components/CodeBlock'
 import { readTime } from '../utils/post'
-import { trackUser } from '../utils/usertracking'
 import CommentBox from '../components/CommentBox'
 import firebase from '../lib/firebase'
 import { v4 as uuid } from 'uuid';
@@ -39,6 +38,13 @@ const Article = ({ post }) => {
         }
     }, [data])
 
+    const getUTCDate = () => {
+        const now = new Date
+        const utc_timestamp = Date.UTC(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());
+
+        return utc_timestamp
+    }
+
     const postComment = (e) => {
         setMessage({})
         setLoading(true)
@@ -48,8 +54,8 @@ const Article = ({ post }) => {
         const id = uuid()
         const name = e.currentTarget.elements.name.value
         const text = e.currentTarget.elements.text.value
-        const now = new Date
-        var utc_timestamp = Date.UTC(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());
+
+        const utc_timestamp = getUTCDate()
 
         db.collection('posts').doc(post.slug).collection('comments').doc(id).set({
             id: id,
@@ -83,8 +89,8 @@ const Article = ({ post }) => {
         const id = uuid()
         const name = e.currentTarget.elements.name.value
         const text = e.currentTarget.elements.text.value
-        const now = new Date
-        var utc_timestamp = Date.UTC(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());
+        
+        const utc_timestamp = getUTCDate()
 
         db.collection('posts').doc(post.slug).collection('comments').doc(id).set({
             id: id,
@@ -106,6 +112,25 @@ const Article = ({ post }) => {
         }).catch(() => {
             setMessage({type:'reply', msg:'Failed to send reply'})
             setLoading(false)
+        })
+    }
+
+    const trackUser = async (slug) => {
+        const db = firebase.firestore()
+    
+        const getCountry = async () => {
+            const res = await (await fetch('https://ipapi.co/json/')).json()
+            const country_name = res.country_name
+            return country_name
+        }
+    
+        const country = await getCountry()
+        const utc_timestamp = getUTCDate()
+    
+        // Add pageviews for analytics
+        db.collection('posts').doc(slug).collection('views').doc().set({
+            createdAt: utc_timestamp,
+            country_name: country
         })
     }
 
