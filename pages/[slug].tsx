@@ -18,6 +18,7 @@ const Article = ({ post }) => {
     const [viewers, setViewers]: any = useState()
     const [comments, setComments] = useState([])
     const [totalComment, setTotalComment] = useState(0)
+    const [message, setMessage] = useState('')
     const [replyOpen, setReplyOpen] = useState(null)
 
     const env = process.env.NEXT_PUBLIC_ENV || 'development'
@@ -36,6 +37,7 @@ const Article = ({ post }) => {
     }, [data])
 
     const postComment = (e) => {
+        setMessage('')
         const db = firebase.firestore()
         e.preventDefault()
 
@@ -54,10 +56,15 @@ const Article = ({ post }) => {
             parentId: "",
             text: text,
             likes: 0,
+        }).then(() => {
+            setMessage('Comment has been sent')
+        }).catch(() => {
+            setMessage('Failed to send comment')
         })
     }
 
     const postReply = (e) => {
+        setMessage('')
         const db = firebase.firestore()
         e.preventDefault()
 
@@ -77,7 +84,10 @@ const Article = ({ post }) => {
             text: text,
             likes: 0,
         }).then(() => {
+            setMessage('Reply has been sent')
             setReplyOpen(null)
+        }).catch(() => {
+            setMessage('Failed to send reply')
         })
     }
 
@@ -124,7 +134,7 @@ const Article = ({ post }) => {
                     <ReactMarkdown escapeHtml={true} source={post.article} renderers={{ code: CodeBlock }}/>
                 </div>
                 <div className="wrapper">
-                    <CommentBox comments={comments} postComment={postComment} postReply={postReply} replyOpen={replyOpen} setReplyOpen={setReplyOpen} totalComment={totalComment}/>
+                    <CommentBox comments={comments} postComment={postComment} postReply={postReply} replyOpen={replyOpen} setReplyOpen={setReplyOpen} totalComment={totalComment} message={message}/>
                     <SubscribeBox/>
                 </div>
             </Layout>
