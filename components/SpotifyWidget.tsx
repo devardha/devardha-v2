@@ -2,10 +2,15 @@ import Styled from '@emotion/styled'
 import useSWR from 'swr'
 import { FaSpotify } from 'react-icons/fa'
 import { limitCharacter } from '../utils/post';
+import { useEffect } from 'react';
     
 const SpotifyWidget = () => {
     const fetcher = (url) => fetch(url).then((res) => res.json());
     const { data } = useSWR('/api/spotify', fetcher)
+
+    useEffect(() => {
+        // Rerender component
+    }, [data])
 
     return (
         <StyledComponent>
