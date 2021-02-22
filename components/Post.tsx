@@ -85,7 +85,7 @@ const Wrapper = Styled.li`
 
             &:hover{
                 .title{
-                    color: #3964ff;
+                    color: #735dde;
                 }
             }
         }
@@ -157,11 +157,15 @@ const Wrapper = Styled.li`
                 font-size: 1.25rem;
                 cursor:pointer;
                 color:var(--color-light);
+
+                &:hover{
+                    color:#735dde;
+                }
             }
         }
 
         .bookmarked{
-            color:#3964ff !important;
+            color:#735dde !important;
         }
     }
 

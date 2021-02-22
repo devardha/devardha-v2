@@ -178,7 +178,7 @@ const Article = ({ post }) => {
                     <ReactMarkdown escapeHtml={true} source={post.article} renderers={{ code: CodeBlock }}/>
                 </div>
                 <div className="wrapper">
-                    <CommentBox
+                    {/* <CommentBox
                         comments={comments}
                         postComment={postComment}
                         postReply={postReply}
@@ -186,7 +186,7 @@ const Article = ({ post }) => {
                         setReplyOpen={setReplyOpen}
                         setMessage={setMessage}
                         totalComment={totalComment}
-                        message={message}/>
+                        message={message}/> */}
                     <SubscribeBox/>
                 </div>
             </Layout>

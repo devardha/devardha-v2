@@ -1,6 +1,7 @@
 import Styled from '@emotion/styled'
 import useSWR from 'swr'
 import { FaSpotify } from 'react-icons/fa'
+import { limitCharacter } from '../utils/post';
     
 const SpotifyWidget = () => {
     const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -14,7 +15,7 @@ const SpotifyWidget = () => {
                 </div>
                 <div className="song__details">
                     <div className="song__title">{ data ? data.album : 'Not Listening' }</div>
-                    <div className="song__artist">{ data ? data.artist : 'Spotify' }</div>
+                    <div className="song__artist">{ data ? limitCharacter(data.artist || 'Spotify', 17) : 'Spotify' }</div>
                 </div>
                 <span className="icon"><FaSpotify/></span>
             </div>
@@ -39,8 +40,8 @@ const StyledComponent = Styled.div`
         display:flex;
         position:relative;
         align-items:center;
-        background:#fff;
-        box-shadow:0 2px 30px rgb(0,0,0,0.05);
+        background:var(--spotify-bg);
+        box-shadow:0 2px 30px var(--spotify-shadow);
         padding:1rem 1.25rem;
         min-width:290px;
         border-radius:8px;
@@ -70,12 +71,12 @@ const StyledComponent = Styled.div`
             font-size:1rem;
             margin-bottom:.3rem;
             font-weight:600;
-            color:#111;
+            color:var(--spotify-title);
         }
 
         .song__artist{
             font-size:.9rem;
-            color:#999;
+            color:var(--spotify-subtitle);
         }
     }
 `
