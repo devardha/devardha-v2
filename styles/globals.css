@@ -16,9 +16,9 @@
     --color-secondary:#777;
     --color-light:#999;
 
-    --color-link:#735dde;
-    --color-link-hover:#735dde;
-    --color-link-active:#735dde;
+    --color-link:#3964ff;
+    --color-link-hover:#3964ff;
+    --color-link-active:#3964ff;
 
     --switch-btn-bg:#EDF2F7;
     --switch-btn-bg-hover:#e7eef5;
@@ -27,21 +27,21 @@
     --input-border:#DBDFE4;
     --input-placeholder:#ccc;
 
-    --newsletter-border:#b7afe2;
-    --newsletter-bg:#f9f7ff;
+    --newsletter-border:#b5d9ff;
+    --newsletter-bg:#f7fcff;
     --newsletter-input:#fff;
     --newsletter-input-placeholder:#ccc;
     --newsletter-heading:#000;
 
-    --code-bg:#735dde;
+    --code-bg:#3964ff;
     --code-text:#fff;
 
     --message-text:#21d289;
     --message-bg:#f0fff8;
 
     --btn-text:#fff;
-    --btn-bg:#735dde;
-    --btn-bg-hover:#6350c1;
+    --btn-bg:#3964ff;
+    --btn-bg-hover:#1845e6;
 }
 
 [data-theme='dark'] {
@@ -52,9 +52,9 @@
     --color-secondary:#8b949e;
     --color-light:#8b949e;
 
-    --color-link:#9a86fd;
-    --color-link-hover:#735dde;
-    --color-link-active:#735dde;
+    --color-link:#7d99ff;
+    --color-link-hover:#1949f5;
+    --color-link-active:#3964ff;
 
     --switch-btn-bg:#151a23;
     --switch-btn-bg-hover:#191e29;
@@ -67,17 +67,17 @@
     --newsletter-bg:#151a23;
     --newsletter-input:#12171f;
     --newsletter-input-placeholder:#4b5769;
-    --newsletter-heading:#735dde;
+    --newsletter-heading:#3964ff;
 
-    --code-bg:#735dde;
+    --code-bg:#3964ff;
     --code-text:#fff;
 
     --message-text:#21d289;
     --message-bg:#00ff8812;
 
     --btn-text:#fff;
-    --btn-bg:#735dde;
-    --btn-bg-hover:#6350c1;
+    --btn-bg:#3964ff;
+    --btn-bg-hover:#1845e6;
 }
 
 html,

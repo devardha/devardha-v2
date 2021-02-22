@@ -1,10 +1,14 @@
 import React from 'react'
 import Styled from '@emotion/styled'
+import SpotifyWidget from './SpotifyWidget'
 
 const Footer = () => {
     return (
         <Wrapper>
-            <p>Made with ❤️ by devardha</p>
+            <SpotifyWidget/>
+            <div className="credits">
+                <p>Made with ❤️ by devardha</p>
+            </div>
         </Wrapper>
     );
 }
@@ -12,20 +16,21 @@ const Footer = () => {
 const Wrapper = Styled.footer`
     width:100%;
     max-width:800px;
-    padding: 0 1.5rem;
+    padding: 2rem 1.5rem;
     margin:0 auto;
     margin-top:4rem;
-    height:200px;
     display:flex;
-    align-items:flex-end;
     justify-content:center;
+    flex-direction:column;
 
-    p{
-        margin-bottom:3rem;
+    .credits{
+        width:100%;
+        display:flex;
+        justify-content:center;
     }
 
     @media(min-width:768px){
-        padding: 0 0;
+        padding: 2rem 0 2rem 0;
     }
 `
     
