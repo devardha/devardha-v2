@@ -42,7 +42,7 @@ const Wrapper = Styled.footer`
         margin-right:1rem;
         cursor:pointer;
         color:var(--color);
-        margin-bottom: 12px;
+        margin-bottom: 1rem;
 
         &:hover{
             color:var(--color-link-hover);
