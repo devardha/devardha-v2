@@ -56,9 +56,9 @@ const Wrapper = Styled.div`
             flex-wrap:wrap;
 
             button{
-                background: #fff;
-                border: 1px solid #ddd;
-                color:#555;
+                background: var(--label-bg);
+                border: 1px solid var(--label-border);
+                color:var(--label-text);
                 padding: 8px 16px;
                 border-radius: 4rem;
                 margin-right: 8px;

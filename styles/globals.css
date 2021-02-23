@@ -43,6 +43,10 @@
     --btn-bg:#735dde;
     --btn-bg-hover:#6350c1;
 
+    --label-bg:#fff;
+    --label-text:#555;
+    --label-border:#ddd;
+
     --spotify-title:#111;
     --spotify-subtitle:#999;
     --spotify-bg:#fff;
@@ -83,6 +87,10 @@
     --btn-text:#fff;
     --btn-bg:#735dde;
     --btn-bg-hover:#6350c1;
+
+    --label-bg:#735dde;
+    --label-text:#fff;
+    --label-border:#735dde;
 
     --spotify-title:#fff;
     --spotify-subtitle:#ccc;
