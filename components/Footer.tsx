@@ -30,10 +30,11 @@ const Wrapper = Styled.footer`
     .footer__content{
         width:100%;
         display:flex;
-        flex-direction:row;
         justify-content:center;
         align-items:center;
         padding:1rem 0;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     span{
@@ -41,6 +42,7 @@ const Wrapper = Styled.footer`
         margin-right:1rem;
         cursor:pointer;
         color:var(--color);
+        margin-bottom: 12px;
 
         &:hover{
             color:var(--color-link-hover);
@@ -49,6 +51,15 @@ const Wrapper = Styled.footer`
 
     @media(min-width:768px){
         padding: 2rem 0 2rem 0;
+
+        span{
+            margin-bottom: 0;
+        }
+
+        .footer__content{
+            flex-direction: row;
+            align-items: center;
+        }
     }
 `
     
