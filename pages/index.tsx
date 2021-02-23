@@ -66,12 +66,6 @@ const Wrapper = styled.div`
             margin-top:7rem;
         }
     }
-
-    @media(min-width:1024px){
-        .posts{
-            padding: 0;
-        }
-    }
 `
 
 export async function getStaticProps() {

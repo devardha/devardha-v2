@@ -8,7 +8,6 @@ import { dateFormatter } from '../utils/date'
 import SubscribeBox from '../components/SubscribeBox'
 import CodeBlock from '../components/CodeBlock'
 import { readTime } from '../utils/post'
-import CommentBox from '../components/CommentBox'
 import firebase from '../lib/firebase'
 import { v4 as uuid } from 'uuid';
 import { useQuery } from 'react-query'
@@ -178,15 +177,6 @@ const Article = ({ post }) => {
                     <ReactMarkdown escapeHtml={true} source={post.article} renderers={{ code: CodeBlock }}/>
                 </div>
                 <div className="wrapper">
-                    {/* <CommentBox
-                        comments={comments}
-                        postComment={postComment}
-                        postReply={postReply}
-                        replyOpen={replyOpen}
-                        setReplyOpen={setReplyOpen}
-                        setMessage={setMessage}
-                        totalComment={totalComment}
-                        message={message}/> */}
                     <SubscribeBox/>
                 </div>
             </Layout>

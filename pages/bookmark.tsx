@@ -70,7 +70,6 @@ const Bookmark = () => {
 const Wrapper = Styled.div`
     .page-head, .page-body{
         max-width:800px;
-        padding:0;
         padding: 0 1.5rem;
     }
 
@@ -83,21 +82,11 @@ const Wrapper = Styled.div`
     }
 
     @media(min-width:768px){
-        .posts{
-            padding: 0;
-        }
-
         .page-head{
-            padding:0;
-
             h1{
                 font-size:2.75rem;
                 line-height:3.5rem;
             }
-        }
-
-        .page-body{
-            padding:0;
         }
     }
 `

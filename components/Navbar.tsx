@@ -17,7 +17,7 @@ const Navbar = () => {
                 <div className="list">
                     <Link href="/"><li className={router.pathname === '/' ? 'active' : ''}>Home</li></Link>
                     <Link href="/about"><li className={router.pathname === '/about' ? 'active' : ''}>About</li></Link>
-                    <Link href="/bookmark"><li className={router.pathname === '/bookmark' ? 'active' : ''}>Bookmark</li></Link>
+                    <Link href="/projects"><li className={router.pathname === '/projects' ? 'active' : ''}>Projects</li></Link>
                 </div>
             </ul>
         </Wrapper>
@@ -30,7 +30,6 @@ const Wrapper = Styled.nav`
     justify-content:center;
     margin-bottom:2rem;
     align-items: center;
-    padding: 2rem 1.5rem;
     position: fixed;
     z-index: 1;
     background:var(--nav-background);
@@ -62,6 +61,7 @@ const Wrapper = Styled.nav`
         width:100%;
         max-width:800px;
         margin:0 auto;
+        padding: 2rem 1.5rem;
         
         li{
             color:var(--color);
@@ -80,9 +80,9 @@ const Wrapper = Styled.nav`
     }
 
     @media(min-width:768px){
-        padding: 1.5rem;
-
         ul{
+            padding: 1.5rem;
+            
             li{
                 margin-left:2rem;
             }

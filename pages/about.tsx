@@ -19,12 +19,6 @@ const About = () => {
 }
     
 const Wrapper = Styled.div`
-    nav{
-        ul{
-            max-width:800px !important;
-        }
-    }
-
     .page-body{
         min-height:50vh;
     }
@@ -35,8 +29,6 @@ const Wrapper = Styled.div`
 
     @media(min-width:768px){
         .page-head{
-            padding:0;
-
             h1{
                 font-size:2.75rem;
                 line-height:3.5rem;
@@ -44,7 +36,6 @@ const Wrapper = Styled.div`
         }
         .page-body{
             font-size: 1.5rem;
-            padding:0;
         }
     }
 `

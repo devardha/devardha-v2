@@ -5,8 +5,10 @@ import { limitCharacter } from '../utils/post';
 import { useEffect } from 'react';
     
 const SpotifyWidget = () => {
+    const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
     const fetcher = (url) => fetch(url).then((res) => res.json());
-    const { data } = useSWR('/api/spotify', fetcher)
+    const { data } = useSWR( isProduction ? '/api/spotify' : null, fetcher, { refreshInterval: 60000 })
+    const fallbackImage = 'https://cdnp0.stackassets.com/b758316c4d8ebfa547940e08edde431cab730363/store/opt/596/447/2b7fc67526430c9d0c9a61cf4869cab7862d06014b7c4c8a979c144ad9fa/Giveaway_spotify_image-1.jpg'
 
     useEffect(() => {
         // Rerender component
@@ -16,11 +18,11 @@ const SpotifyWidget = () => {
         <StyledComponent>
             <div className="spotify__card">
                 <div className="song__image">
-                    { data ? <img src={data.albumImageUrl} alt="Spotify album"/> : '' }
+                    { data?.albumImageUrl ? <img src={data.albumImageUrl} alt="Spotify album"/> : <img src={fallbackImage} alt="Spotify album"/> }
                 </div>
                 <div className="song__details">
-                    <div className="song__title">{ data ? data.album : 'Not Listening' }</div>
-                    <div className="song__artist">{ data ? limitCharacter(data.artist || 'Spotify', 17) : 'Spotify' }</div>
+                    <div className="song__title">{ data?.album ? data.album : 'Not Listening' }</div>
+                    <div className="song__artist">{ data?.artist ? limitCharacter(data.artist || 'Spotify', 17) : 'Spotify' }</div>
                 </div>
                 <span className="icon"><FaSpotify/></span>
             </div>
