@@ -1,7 +1,7 @@
 import React from 'react';
 import { GraphQLClient } from 'graphql-request'
 
-const SITE_URL = 'https://devardha.vercel.app';
+const SITE_URL = 'https://devardha.now.sh';
 
 const createSitemap = (posts) => `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -11,11 +11,17 @@ const createSitemap = (posts) => `<?xml version="1.0" encoding="UTF-8"?>
         <url>
             <loc>${`${SITE_URL}/about`}</loc>
         </url>
+        <url>
+            <loc>${`${SITE_URL}/search`}</loc>
+        </url>
+        <url>
+            <loc>${`${SITE_URL}/projects`}</loc>
+        </url>
         ${posts
           .map(({ slug }) => {
             return `
                     <url>
-                        <loc>${`${SITE_URL}/${slug}`}</loc>
+                        <loc>${`${SITE_URL}/blog/${slug}`}</loc>
                     </url>
                 `;
           })

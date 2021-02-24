@@ -1,142 +1,40 @@
 import React, { useEffect, useState } from 'react'
 import Styled from '@emotion/styled'
 import { GraphQLClient } from 'graphql-request'
-import Layout from '../components/Layout'
+import Layout from '../../components/Layout'
 import ReactMarkdown from 'react-markdown'
 import Head from 'next/head'
-import { dateFormatter } from '../utils/date'
-import SubscribeBox from '../components/SubscribeBox'
-import CodeBlock from '../components/CodeBlock'
-import { readTime } from '../utils/post'
-import firebase from '../lib/firebase'
-import { v4 as uuid } from 'uuid';
-import { useQuery } from 'react-query'
-import SocialShare from '../components/SocialShare'
+import { dateFormatter } from '../../utils/date'
+import SubscribeBox from '../../components/SubscribeBox'
+import CodeBlock from '../../components/CodeBlock'
+import { readTime } from '../../utils/post'
+import firebase from '../../lib/firebase'
+import SocialShare from '../../components/SocialShare'
 
 const Article = ({ post }) => {
     const [viewers, setViewers]: any = useState()
-    const [comments, setComments] = useState([])
-    const [totalComment, setTotalComment] = useState(0)
-    const [message, setMessage] = useState({})
-    const [replyOpen, setReplyOpen] = useState(null)
-    const [loading, setLoading] = useState(false)
 
     const domain = process.env.NEXT_PUBLIC_DOMAIN || 'http://localhost:3000'
     const env = process.env.NEXT_PUBLIC_ENV || 'development'
 
-    const { data } = useQuery('comments', () =>
-        fetch(`${domain}/api/comments?slug=${post.slug}`).then(res =>
-            res.json()
-        )
-    )
-
-    useEffect(() => {
-        if(data){
-            setComments(data.data)
-            setTotalComment(data.count)
-        }
-    }, [data])
-
-    const getUTCDate = () => {
-        const now = new Date
-        const utc_timestamp = Date.UTC(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());
-
-        return utc_timestamp
-    }
-
-    const postComment = (e) => {
-        setMessage({})
-        setLoading(true)
+    const incrementViews = async (slug) => {
         const db = firebase.firestore()
-        e.preventDefault()
+            const views = await db.collection('blogviews').doc(slug).get().then(view => {
+                if(view.data()){
+                    return view.data().viewsCount
+                }
 
-        const id = uuid()
-        const name = e.currentTarget.elements.name.value
-        const text = e.currentTarget.elements.text.value
+                return 0
+            })
 
-        const utc_timestamp = getUTCDate()
-
-        db.collection('posts').doc(post.slug).collection('comments').doc(id).set({
-            id: id,
-            name: name,
-            createdAt: utc_timestamp,
-            avatar: "",
-            replies: [],
-            parentId: "",
-            text: text,
-            likes: 0,
-        }).then( async () => {
-            const res = await fetch(`${domain}/api/comments?slug=${post.slug}`)
-            const data = await res.json()
-
-            setLoading(false)
-            setComments(data.data)
-            setTotalComment(data.count)
-            setMessage({type:'comment', msg:'Comment has been sent'})
-        }).catch(() => {
-            setMessage({type:'comment', msg:'Failed to send comment'})
-            setLoading(false)
-        })
-    }
-
-    const postReply = (e) => {
-        setMessage({})
-        setLoading(true)
-        const db = firebase.firestore()
-        e.preventDefault()
-
-        const id = uuid()
-        const name = e.currentTarget.elements.name.value
-        const text = e.currentTarget.elements.text.value
-        
-        const utc_timestamp = getUTCDate()
-
-        db.collection('posts').doc(post.slug).collection('comments').doc(id).set({
-            id: id,
-            name: name,
-            createdAt: utc_timestamp,
-            avatar: "",
-            replies: [],
-            parentId: replyOpen,
-            text: text,
-            likes: 0,
-        }).then(async () => {
-            const res = await fetch(`${domain}/api/comments?slug=${post.slug}`)
-            const data = await res.json()
-
-            setLoading(false)
-            setComments(data.data)
-            setTotalComment(data.count)
-            setMessage({type:'reply', msg:'Reply has been sent'})
-        }).catch(() => {
-            setMessage({type:'reply', msg:'Failed to send reply'})
-            setLoading(false)
-        })
-    }
-
-    const trackUser = async (slug) => {
-        const db = firebase.firestore()
-    
-        const getCountry = async () => {
-            const res = await (await fetch('https://ipapi.co/json/')).json()
-            const country_name = res.country_name
-            return country_name
-        }
-    
-        const country = await getCountry()
-        const utc_timestamp = getUTCDate()
-    
-        // Add pageviews for analytics
-        db.collection('posts').doc(slug).collection('views').doc().set({
-            createdAt: utc_timestamp,
-            country_name: country
-        })
+            await db.collection('blogviews').doc(slug).set({ postId: slug, viewsCount: views + 1})
+            setViewers(views + 1)
     }
 
     useEffect(() => {
-        const trackme = localStorage.getItem('trackme') || true
-        if(env === 'production' && trackme === true){
-            trackUser(post.slug)
+        if(env === 'production'){
+            incrementViews(post.slug)
+
         }
     }, [post.slug])
 
@@ -193,6 +91,7 @@ const Wrapper = Styled.div`
 
     .page-head{
         margin-top:8rem;
+        padding: 0 1.5rem;
 
         .post-image{
             width:100%;
@@ -233,7 +132,6 @@ const Wrapper = Styled.div`
 
     @media(min-width:768px){
         .page-head{
-            padding:0;
 
             h1{
                 font-size:2.75rem;
@@ -242,7 +140,6 @@ const Wrapper = Styled.div`
         }
         .page-body{
             font-size: 1.5rem;
-            padding:0;
         }
     }
 `

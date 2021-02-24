@@ -25,11 +25,11 @@ const Post = ({ post }) => {
                 <img src={post.image} alt={post.title}/>
             </div>
             <div className="post-preview">
-                <Link href={post.slug}>
-                <div className="postpreview-top">
-                    <div className="title">{post.title}</div>
-                    <div className="subtitle">{limitCharacter(post.article, 110)}</div>
-                </div>
+                <Link href={`/blog/${post.slug}`}>
+                    <div className="postpreview-top">
+                        <div className="title">{post.title}</div>
+                        <div className="subtitle">{limitCharacter(post.article, 110)}</div>
+                    </div>
                 </Link>
                 <div className="postpreview-bottom">
                     <div className="post-detail">

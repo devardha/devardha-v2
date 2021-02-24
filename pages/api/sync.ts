@@ -19,7 +19,10 @@ export default async (req, res) => {
                 slug,
                 image,
                 writer,
-                createdAt
+                createdAt,
+                tags{
+                    tagName
+                }
             }
         }
         `
@@ -28,6 +31,10 @@ export default async (req, res) => {
 
         const wrapper = []
         posts.map(item => {
+            const tags = []
+            item.tags?.map(tag => {
+                tags.push(tag.tagName)
+            })
             wrapper.push({
                 objectID: item.id,
                 title: item.title,
@@ -36,10 +43,11 @@ export default async (req, res) => {
                 slug: item.slug,
                 image: item.image,
                 writer: item.writer,
-                createdAt: item.createdAt
+                createdAt: item.createdAt,
+                tags:tags
             })
         })
-
+        
         index.replaceAllObjects(wrapper).then(() => {
             return res.status(200).json({msg: "Data synced successfully", success: true})
         }).catch((error) => {
