@@ -38,12 +38,6 @@ const Wrapper = Styled.div`
         margin:0 auto;
         padding: 0 1.5rem;
     }
-
-    @media(min-width:1024px){
-        .wrapper{
-            padding: 0;
-        }
-    }
 `
     
 export default Layout

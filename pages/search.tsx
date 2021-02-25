@@ -1,15 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Styled from '@emotion/styled'
 import Layout from '../components/Layout'
 import algoliasearch from 'algoliasearch/lite';
-import { PoweredBy, InstantSearch } from 'react-instantsearch-dom'
+import { InstantSearch } from 'react-instantsearch-dom'
+import Hits from '../components/Hits';
+import { connectInfiniteHits, connectSearchBox } from 'react-instantsearch-dom'
+import SearchBox from '../components/SearchBox';
+import RefinementList from '../components/RefinementList';
 
 const searchClient = algoliasearch(
     'JWO31IZFSL',
     '2c34f4e15bf18f992cb1337cafa38a4d'
 );
 
+const CustomInfiniteHits = connectInfiniteHits(Hits);
+const CustomSearchBox = connectSearchBox(SearchBox)
+
 const Projects = () => {
+    const [tags, setTags] = useState([])
+    const [filters, setFilters] = useState([])
+
     return (
         <InstantSearch
         indexName="posts"
@@ -21,13 +31,12 @@ const Projects = () => {
                     </div>
                     <div className="page-body">
                         <p>Cari artikel yang kamu sukai!</p>
-                        <div className="searchbox">
-                            <input type="text" placeholder="Search here..."/>
-                            <PoweredBy
-                                translations={{
-                                    searchBy: 'Powered by',
-                                }}
-                            />
+                        <CustomSearchBox/>
+                        <div className="page__content">
+                            <CustomInfiniteHits setTags={setTags} filters={filters}/>
+                            <div className="sidebar">
+                                <RefinementList items={tags} filters={filters} setFilters={setFilters}/>
+                            </div>
                         </div>
                     </div>
                 </Layout>
@@ -44,39 +53,16 @@ const Wrapper = Styled.div`
     .page-body{
         min-height:50vh;
 
-        .searchbox{
-            input{
-                padding: 1rem 2rem;
-                width: 100%;
-                border-radius: 4px;
-                border: 1px solid var(--input-border);
-                background:var(--input-bg);
+        .page__content{
+            display:flex;
+            justify-content:space-between;
+            flex-direction: column;
+            margin-top: 1rem;
 
-                &::placeholder{
-                    color:var(--input-placeholder)
-                }
-
-                &:focus{
-                    outline:0;
-                }
-            }
-
-            .ais-PoweredBy{
-                font-size: .9rem;
-                display: flex;
-                justify-content: flex-end;
-                margin-top: 7px;
-            }
-            .ais-PoweredBy-text{
-                margin-right: 8px;
-                color:var(--color);
-            }
-            a{
-                transform: translateY(-2px);
-
-                svg{
-                    width: 4rem;
-                }
+            .sidebar{
+                width:100%;
+                display:flex;
+                flex-direction:column;
             }
         }
     }
@@ -90,6 +76,14 @@ const Wrapper = Styled.div`
         }
         .page-body{
             font-size: 1.5rem;
+
+            .page__content{
+                flex-direction: row;
+
+                .sidebar{
+                    width:33%;
+                }
+            }
         }
     }
 `
