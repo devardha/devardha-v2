@@ -14,15 +14,18 @@ const RefinementList = ({ items, filters, setFilters }) => {
         <StyledComponent>
             <h2>Tags</h2>
             {
-                items?.map((item, index) => (
-                    <button
+                items?.map((item, index) => {
+                    console.log(item)
+                    return(
+                        <button
                         key={index}
                         onClick={() => handleFilter(item.label, filters)}
                         className={filters?.includes(item.label) ? 'active' : ''}
-                        >
-                        {item.label} ({item.count})
-                        </button>
-                ))
+                    >
+                    {item.label.toString()} ({item.count})
+                    </button>
+                    )
+                })
             }
         </StyledComponent>
     );
@@ -41,11 +44,15 @@ const StyledComponent = Styled.div`
         border: 1px solid var(--label-border);
         color:var(--label-text);
         padding: 8px 16px;
-        border-radius: 4rem;
+        border-radius: 4px;
         margin-right: 8px;
         font-size:.9rem;
         cursor:pointer;
         margin-bottom:8px;
+
+        &:hover{
+            border-color:#999;
+        }
 
         &:focus{
             outline:0;

@@ -8,7 +8,7 @@ const SpotifyWidget = () => {
     const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
     const fetcher = (url) => fetch(url).then((res) => res.json());
     const { data } = useSWR( isProduction ? '/api/spotify' : null, fetcher, { refreshInterval: 60000 })
-    const fallbackImage = 'https://cdnp0.stackassets.com/b758316c4d8ebfa547940e08edde431cab730363/store/opt/596/447/2b7fc67526430c9d0c9a61cf4869cab7862d06014b7c4c8a979c144ad9fa/Giveaway_spotify_image-1.jpg'
+    const fallbackImage = 'https://www.advancedsciencenews.com/wp-content/uploads/2020/06/graham-holtshausen-fUnfEz3VLv4-unsplash.jpg'
 
     useEffect(() => {
         // Rerender component
@@ -63,8 +63,8 @@ const StyledComponent = Styled.div`
         margin-right:1rem;
 
         img{
-            width:100%;
-            height:100%;
+            width:105%;
+            height:105%;
             object-fit:cover;
         }
     }

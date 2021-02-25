@@ -2,12 +2,13 @@ import Styled from '@emotion/styled'
 import { useEffect } from 'react';
 import { getUnique } from '../utils/filters';
 import { limitCharacter } from '../utils/post';
+import { Highlight } from 'react-instantsearch-dom'
     
-const Hits = ({ hits, setTags, filters }) => {
+const InfiniteHits = ({ hits, setTags, filters, isAlgolia }) => {
     const tagFilter = (array, filterList) => {
         if(filterList.length > 0){
             const filtered = []
-            array.map(item => {
+            array?.map(item => {
                 item.tags?.map(tag => {
                     if(filterList?.some(x => x === tag)){
                         filtered.push(item)
@@ -15,7 +16,7 @@ const Hits = ({ hits, setTags, filters }) => {
                 })
             })
     
-            const final = getUnique(filtered, 'objectID')
+            const final = getUnique(filtered, 'slug')
             return final
         }else{
             return array
@@ -24,8 +25,10 @@ const Hits = ({ hits, setTags, filters }) => {
 
     useEffect(() => {
         const wrapper = []
-        hits.map(item => {
-            wrapper.push(...item.tags)
+        hits?.map(item => {
+            if(item.tags?.length > 0){
+                wrapper.push(...item.tags)
+            }
         })
 
         const countTags = (array, key) => {
@@ -38,14 +41,14 @@ const Hits = ({ hits, setTags, filters }) => {
         }
 
         const objects = []
-        wrapper.map(tag => {
+        wrapper?.map(tag => {
             objects.push({
                 label: tag,
             })
         })
 
         const tagList = []
-        objects.map(tag => {
+        objects?.map(tag => {
             tagList.push({
                 label: tag.label,
                 count: countTags(objects, tag.label)
@@ -66,7 +69,13 @@ const Hits = ({ hits, setTags, filters }) => {
                             <img src={item.image} alt={item.title}/>
                         </div>
                         <div className="hits__details">
-                            <div className="hits__title">{item.title}</div>
+                            <div className="hits__title">
+                                {
+                                    isAlgolia ? (
+                                        <Highlight attribute={"title"} hit={item} tagName="mark"/>
+                                    ) : item.title
+                                }
+                            </div>
                             <div className="hits__summary">
                                 <p>
                                     { limitCharacter(item.article, 200) }
@@ -109,6 +118,11 @@ const StyledComponent = Styled.ul`
             font-size:1.2rem;
             font-weight:bold;
             color:var(--color);
+            cursor:pointer;
+
+            &:hover{
+                color:#735dde;
+            }
         }
         .hits__summary{
             p{
@@ -124,4 +138,4 @@ const StyledComponent = Styled.ul`
     }
 `
     
-export default Hits
+export default InfiniteHits

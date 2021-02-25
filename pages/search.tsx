@@ -3,7 +3,8 @@ import Styled from '@emotion/styled'
 import Layout from '../components/Layout'
 import algoliasearch from 'algoliasearch/lite';
 import { InstantSearch } from 'react-instantsearch-dom'
-import Hits from '../components/Hits';
+import { GraphQLClient } from 'graphql-request';
+import InfiniteHits from '../components/InfiniteHits';
 import { connectInfiniteHits, connectSearchBox } from 'react-instantsearch-dom'
 import SearchBox from '../components/SearchBox';
 import RefinementList from '../components/RefinementList';
@@ -13,13 +14,14 @@ const searchClient = algoliasearch(
     '2c34f4e15bf18f992cb1337cafa38a4d'
 );
 
-const CustomInfiniteHits = connectInfiniteHits(Hits);
+const CustomInfiniteHits = connectInfiniteHits(InfiniteHits);
 const CustomSearchBox = connectSearchBox(SearchBox)
 
-const Projects = () => {
+const Search = ({ posts }) => {
     const [tags, setTags] = useState([])
     const [filters, setFilters] = useState([])
-
+    const [query, setQuery] = useState('')
+    
     return (
         <InstantSearch
         indexName="posts"
@@ -31,9 +33,13 @@ const Projects = () => {
                     </div>
                     <div className="page-body">
                         <p>Cari artikel yang kamu sukai!</p>
-                        <CustomSearchBox/>
+                        <CustomSearchBox setQuery={setQuery}/>
                         <div className="page__content">
-                            <CustomInfiniteHits setTags={setTags} filters={filters}/>
+                            {
+                                query.length === 0 ? (
+                                    <InfiniteHits hits={posts} setTags={setTags} filters={filters} isAlgolia={false}/>
+                                ) : <CustomInfiniteHits setTags={setTags} filters={filters} isAlgolia={true}/>
+                            }
                             <div className="sidebar">
                                 <RefinementList items={tags} filters={filters} setFilters={setFilters}/>
                             </div>
@@ -88,4 +94,48 @@ const Wrapper = Styled.div`
     }
 `
 
-export default Projects
+Search.getInitialProps = async () => {
+    const graphcms = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS)
+    const { posts } = await graphcms.request(
+        `
+        {
+            posts(stage: PUBLISHED){
+                title,
+                article,
+                slug,
+                image,
+                writer,
+                createdAt,
+                tags{
+                    tagName
+                }
+            }
+        }
+        `
+    )
+
+    const formatedList = []
+    posts?.map(item => {
+        const tagList = []
+        item.tags.map(tag => {
+            tagList.push(tag.tagName)
+        })
+
+        formatedList.push({
+            title: item.title,
+            article: item.article,
+            slug: item.slug,
+            image: item.image,
+            writer: item.writter,
+            createdAt: item.createdAt,
+            tags: tagList
+        })
+    })
+    
+  
+    return {
+        posts: formatedList
+    };
+}
+
+export default Search

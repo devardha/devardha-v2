@@ -60,7 +60,7 @@ const Wrapper = Styled.div`
                 border: 1px solid var(--label-border);
                 color:var(--label-text);
                 padding: 8px 16px;
-                border-radius: 4rem;
+                border-radius: 4px;
                 margin-right: 8px;
                 font-size:.9rem;
                 cursor:default;

@@ -1,7 +1,7 @@
 import Styled from '@emotion/styled'
 import { PoweredBy } from 'react-instantsearch-dom'
     
-const SearchBox = ({ currentRefinement, refine }) => {
+const SearchBox = ({ currentRefinement, refine, setQuery }) => {
     return (
         <StyledComponent>
             <div className="searchbox">
@@ -9,10 +9,10 @@ const SearchBox = ({ currentRefinement, refine }) => {
                     type="text"
                     placeholder="Search here..."
                     value={currentRefinement}
-                    onChange={event => refine(event.currentTarget.value)}/>
+                    onChange={event => {refine(event.currentTarget.value); setQuery(event.currentTarget.value)}}/>
                 <PoweredBy
                     translations={{
-                        searchBy: 'Powered by',
+                        searchBy: '',
                     }}
                 />
             </div>
@@ -22,6 +22,10 @@ const SearchBox = ({ currentRefinement, refine }) => {
     
 const StyledComponent = Styled.div`
     .searchbox{
+        position: relative;
+        display: flex;
+        align-items: center;
+
         input{
             padding: 1rem 2rem;
             width: 100%;
@@ -43,14 +47,13 @@ const StyledComponent = Styled.div`
             display: flex;
             justify-content: flex-end;
             margin-top: 7px;
+            position: absolute;
+            right: 1rem;
         }
         .ais-PoweredBy-text{
-            margin-right: 8px;
-            color:var(--color);
+            display:none;
         }
         a{
-            transform: translateY(-2px);
-
             svg{
                 width: 4rem;
             }
