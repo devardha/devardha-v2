@@ -49,6 +49,7 @@ const StyledComponent = Styled.div`
             margin-top: 7px;
             position: absolute;
             right: 1rem;
+            transform:translateY(-1px);
         }
         .ais-PoweredBy-text{
             display:none;
@@ -56,6 +57,10 @@ const StyledComponent = Styled.div`
         a{
             svg{
                 width: 4rem;
+
+                path:last-of-type{
+                    fill:var(--algolia-text);
+                }
             }
         }
     }

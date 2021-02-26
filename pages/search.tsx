@@ -21,7 +21,7 @@ const Search = ({ posts }) => {
     const [tags, setTags] = useState([])
     const [filters, setFilters] = useState([])
     const [query, setQuery] = useState('')
-    
+
     return (
         <InstantSearch
         indexName="posts"
@@ -85,6 +85,7 @@ const Wrapper = Styled.div`
 
             .page__content{
                 flex-direction: row;
+                margin-top:2rem;
 
                 .sidebar{
                     width:33%;

@@ -51,6 +51,8 @@
     --spotify-subtitle:#999;
     --spotify-bg:#fff;
     --spotify-shadow:rgb(0,0,0,0.05);
+
+    --algolia-text:#182359;
 }
 
 [data-theme='dark'] {
@@ -90,12 +92,14 @@
 
     --label-bg:#0d1117;
     --label-text:#fff;
-    --label-border:#735dde;
+    --label-border:#2b3440;
 
     --spotify-title:#fff;
     --spotify-subtitle:#ccc;
     --spotify-bg:#0d1117;
     --spotify-shadow:rgb(0,0,0,0.3);
+
+    --algolia-text:#fff;
 }
 
 html,

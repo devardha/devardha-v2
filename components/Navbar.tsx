@@ -2,9 +2,16 @@ import React from 'react'
 import Styled from '@emotion/styled'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { IoMdMoon } from 'react-icons/io'
-import { HiSun } from 'react-icons/hi'
 import { useTheme } from 'next-themes'
+import dynamic from 'next/dynamic'
+
+const DynamicMoon = dynamic(() =>
+  import('react-icons/io').then((mod) => mod.IoMdMoon)
+)
+
+const DynamicSun = dynamic(() =>
+  import('react-icons/hi').then((mod) => mod.HiSun)
+)
     
 const Navbar = () => {
     const router = useRouter()
@@ -13,7 +20,7 @@ const Navbar = () => {
     return (
         <Wrapper>
             <ul>
-                <span className="dark-mode" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>{theme === 'light' ? <IoMdMoon/> : <HiSun/>}</span>
+                <span className="dark-mode" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>{theme ? theme === 'dark' ? <DynamicSun/> : <DynamicMoon/> : ''}</span>
                 <div className="list">
                     <Link href="/"><li className={router.pathname === '/' ? 'active' : ''}>Home</li></Link>
                     <Link href="/about"><li className={router.pathname === '/about' ? 'active' : ''}>About</li></Link>

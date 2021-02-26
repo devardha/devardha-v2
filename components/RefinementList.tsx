@@ -15,7 +15,6 @@ const RefinementList = ({ items, filters, setFilters }) => {
             <h2>Tags</h2>
             {
                 items?.map((item, index) => {
-                    console.log(item)
                     return(
                         <button
                         key={index}

@@ -38,11 +38,11 @@ const Wrapper = Styled.footer`
     }
 
     span{
-        margin-left:1rem;
+        margin-left:0;
         margin-right:1rem;
         cursor:pointer;
         color:var(--color);
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
 
         &:hover{
             color:var(--color-link-hover);
@@ -54,6 +54,7 @@ const Wrapper = Styled.footer`
 
         span{
             margin-bottom: 0;
+            margin-left:1rem;
         }
 
         .footer__content{

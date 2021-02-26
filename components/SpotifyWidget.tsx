@@ -41,6 +41,7 @@ const StyledComponent = Styled.div`
         color:#1DB954;
         bottom:1rem;
         font-size:1.1rem;
+        margin:0;
     }
 
     .spotify__card{
@@ -52,6 +53,7 @@ const StyledComponent = Styled.div`
         padding:1rem 1.25rem;
         min-width:290px;
         border-radius:8px;
+        width:100%;
     }
 
     .song__image{
@@ -84,6 +86,12 @@ const StyledComponent = Styled.div`
         .song__artist{
             font-size:.9rem;
             color:var(--spotify-subtitle);
+        }
+    }
+
+    @media(min-width:768px){
+        .spotify__card{
+            width:unset;
         }
     }
 `
