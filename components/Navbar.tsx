@@ -49,6 +49,8 @@ const Wrapper = Styled.nav`
         padding: 12px;
         display: flex;
         border-radius: 4px;
+        height: 40px;
+        width: 40px;
         cursor:pointer;
 
         &:hover{

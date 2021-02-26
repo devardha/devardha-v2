@@ -63,6 +63,11 @@ const StyledComponent = Styled.div`
         background:#735dde;
         color:#fff;
     }
+
+    @media(min-width:768px){
+        position: sticky;
+        top: 7rem;
+    }
 `
     
 export default RefinementList
